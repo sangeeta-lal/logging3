@@ -25,7 +25,7 @@ port=3307
 user="sangeetal"
 password="sangeetal"
 database="logging_level3"
-catch_training_table = project+"_catch_training3
+catch_training_table = project+"_catch_training3"
 #"""
 
 #To save files on specified locations
