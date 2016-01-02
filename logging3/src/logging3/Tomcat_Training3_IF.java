@@ -13,6 +13,20 @@ import  static org.eclipse.jdt.core.dom.ASTNode.CATCH_CLAUSE;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import java.io.*;
 import java.lang.instrument.ClassDefinition;
 import java.io.IOException;
@@ -39,7 +53,7 @@ import java.util.regex.Pattern;
  *  * http://grepcode.com/file/repository.grepcode.com/java/eclipse.org/3.6/org.eclipse.jdt/core/3.6.0/org/eclipse/jdt/core/dom/MethodInvocation.java#MethodInvocation.%3Cinit%3E%28org.eclipse.jdt.core.dom.AST%29
  * */
 
-public class cloudstack_Training2_IF
+public class Tomcat_Training3_IF
 {
 
 	//@Contextual fLAGS
@@ -100,11 +114,11 @@ public class cloudstack_Training2_IF
 	String db_name ="logging_level3";
 	String userName = "root"; 
 	String password = "1234";
-	String table ="cloudstack_if_training3";	
-    String listing_file_path = "F:\\Research\\Logging3\\result\\cloudstack-4.3.0_java_files.txt";
-   
-    String non_logged_file_path = "F:\\Research\\Logging3\\result\\cloudstack_non_log_if.txt";
-	String logged_file_path = "F:\\Research\\Logging3\\result\\cloudstack_log_if.txt";
+	String table ="tomcat_if_training3";	
+    String listing_file_path = "F:\\Research\\Logging3\\result\\tomcat-8.0.9_java_files.txt";
+    
+    String non_logged_file_path = "F:\\Research\\Logging3\\result\\tomcat_non_log_if.txt";
+	String logged_file_path = "F:\\Research\\Logging3\\result\\tomcat_log_if.txt";
 	
 	//String listing_file_path = "D:\\Research\\Logging3\\result\\temp_files.txt";
 	//*/
@@ -116,13 +130,12 @@ public class cloudstack_Training2_IF
 	String db_name ="logging_level3";
 	String userName = "sangeetal"; 
 	String password = "sangeetal";
-	String table ="cloudstack_if_training3";
-    String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\cloudstack-4.3.0_java_files.txt"; 
-   
-    String non_logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\cloudstack_non_log_if.txt";
-	String logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\cloudstack_log_if.txt";
+	String table ="tomcat_if_training3";
+    String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\tomcat-8.0.9_java_files.txt"; 
+    
+    String non_logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\tomcat_non_log_if.txt";
+	String logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\tomcat_log_if.txt";
 	
-     
    //*/
 	 
     Connection conn=null;	
@@ -130,7 +143,7 @@ public class cloudstack_Training2_IF
 		
 	public static void main(String[] args) 
 	{				    
-		cloudstack_Training2_IF demo = new cloudstack_Training2_IF();
+		Tomcat_Training3_IF demo = new Tomcat_Training3_IF();
 		demo.conn = demo.initdb(demo.db_name);
 		try {
 			BufferedReader br =  new BufferedReader(new FileReader(demo.listing_file_path));
@@ -164,7 +177,7 @@ public void ast_prser(String file_name)
 		try
 		{
 			
-			rawContent = cloudstack_Training2_IF.readFileToString(file_name);
+			rawContent = Tomcat_Training3_IF.readFileToString(file_name);
 			
 		}catch(Exception e){
 			System.out.println();
@@ -295,8 +308,7 @@ public void methodVisitor(String content)
         	
         	String method_if_between_con = " " ;    	    
         	util_met utm =  new util_met();
-        	
-        	
+        	        	
         	//Contextualfeaturess                
         	is_method_have_param = utm.check_method_parameter (method_parameter);
         	method_param_as_string_original = method_parameter.toString();
@@ -483,7 +495,6 @@ public void reset_if_flags()
 }
 	
 
-
 public void insert(String if_block, String if_expr, String method_if_between_con, int loc_till_if,int is_till_if_logged, int till_if_log_count, String till_if_log_levels, String  operators_till_if,
 		int operators_count_till_if,  String variables_till_if, int variables_count_till_if,  String method_call_names_till_if, int method_call_count_till_if, int is_return_till_if, 
 		int throw_throws_till_if, int if_in_till_if, 	int if_count_in_till_if, 	int is_assert_till_if, int is_method_have_param, String method_param_as_string_original, String method_param_as_string, 
@@ -501,9 +512,8 @@ public void insert(String if_block, String if_expr, String method_if_between_con
     
     util_met  utm =  new util_met();	  
     method_if_between_con = utm.replace_quotes_string(method_if_between_con);
-    if_block = utm.replace_quotes_string(if_block);
-    
     method_if_between_con =  "I am not inserting too large for if";
+    if_block = utm.replace_quotes_string(if_block);
     if_block = "too large not inserting if block";
     
     if_expr = utm.replace_quotes_string(if_expr);
@@ -531,7 +541,7 @@ public void insert(String if_block, String if_expr, String method_if_between_con
     	}
 }
 
-public void write_in_file(String if_block, String if_expr, String if_train_con,  String method_content, int log_count)
+public void write_in_file(String if_block, String if_expr, String method_if_between_con,  String method_content, int log_count)
 {
     BufferedWriter bw = null;
     int logged= 0;
@@ -574,7 +584,7 @@ public void write_in_file(String if_block, String if_expr, String if_train_con, 
     	bw.write("Package Name ="+package_name+"\n");
     	bw.write("class name="+class_name+"\n");
     	bw.write("Method Name="+method_name+"\n");
-    	bw.write("If Content="+ if_train_con+"\n");
+    	bw.write("method If between Content="+ method_if_between_con+"\n");
     	//bw.write("All Catch Blocks="+ all_catch_as_string+"\n");
         //bw.write("method parameter = "+ method_parameter +"\n");
     	bw.write("method content="  +method_content+"\n");

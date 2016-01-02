@@ -7,6 +7,7 @@ import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 
+
 //import  static org.eclipse.jdt.core.dom.ASTNode.CATCH_CLAUSE;
 import java.io.*;
 import java.lang.instrument.ClassDefinition;
@@ -35,7 +36,7 @@ import java.util.regex.Pattern;
  *  
  *  */
 
-public class TOMCAT_Training2_CATCH
+public class cloudstack_Training3_CATCH
 {
 
 	
@@ -128,10 +129,10 @@ public class TOMCAT_Training2_CATCH
 	 String password = "1234";
 	   
 	//@Note: create this file using create_file_listing.py
-	 String listing_file_path = "F:\\Research\\Logging3\\result\\tomcat-8.0.9_java_files.txt";
-	 String non_logged_file_path = "F:\\Research\\Logging3\\result\\tomcat_non_log_catch.txt";
-	 String logged_file_path = "F:\\Research\\Logging3\\result\\tomcat_log_catch.txt";
-	 String table = "tomcat_catch_training3";
+	 String listing_file_path = "F:\\Research\\Logging3\\result\\cloudstack-4.3.0_java_files.txt";
+	 String non_logged_file_path = "F:\\Research\\Logging3\\result\\cloudstack_non_log_catch.txt";
+	 String logged_file_path = "F:\\Research\\Logging3\\result\\cloudstack_log_catch.txt";
+	 String table = "cloudstack_catch_training3";
 	//*/
     
 	/*
@@ -142,11 +143,13 @@ public class TOMCAT_Training2_CATCH
 	 String password = "sangeetal";
 	
 	//@Note: create this file using create_file_listing.py
-	 String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\tomcat-8.0.9_java_files.txt";  
-	 String non_logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\tomcat_non_log_catch.txt";
-	 String logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\tomcat_log_catch.txt";
-	  String table = "tomcat_catch_training3";
+	 String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\cloudstack-4.3.0_java_files.txt";  
+	 String non_logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\cloudstack_non_log_catch.txt";
+	 String logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\cloudstack_log_catch.txt";
+	  String table = "cloudstack_catch_training3";
    //*/
+	 
+
 	 
 	 Connection conn=null;	
      java.sql.Statement stmt = null;
@@ -154,7 +157,7 @@ public class TOMCAT_Training2_CATCH
 	public static void main(String[] args) 
 	{
 		
-		TOMCAT_Training2_CATCH demo = new TOMCAT_Training2_CATCH();
+		cloudstack_Training3_CATCH demo = new cloudstack_Training3_CATCH();
 		demo.conn = demo.initdb(demo.db_name);
 
 		if(demo.conn==null)
@@ -214,7 +217,7 @@ public void ast_prser(String file_name)
 		try
 		{
 			
-			rawContent = TOMCAT_Training2_CATCH.readFileToString(file_name);
+			rawContent = cloudstack_Training3_CATCH.readFileToString(file_name);
 			
 		}catch(Exception e){
 			System.out.println( );
@@ -416,10 +419,9 @@ public void methodVisitor(String content)
             String method_try_between_con = method_content.substring(0, try_pos);
             method_try_between_con  =  method_try_between_con.trim();
             method_try_between_con  =  utm.balance_closing_braces(method_try_between_con);
+            System.out.println("method  con:"+ method_content);
             
-            //System.out.println("method  con:"+ method_content);
-            
-            //System.out.println("method between try con:"+ method_try_between_con);
+            System.out.println("method between try con:"+ method_try_between_con);
         
             String modified_con_for_method_call_ext  = utm.get_modified_con_for_method_cal_extraction(method_content , try_pos);
             mnc_till_try =  utm.get_method_call_name(modified_con_for_method_call_ext, mnc_till_try);
@@ -675,7 +677,7 @@ public void reset_try_flags()
 public void write_in_db(int try_id, int catch_id, String try_con, String catch_con,String method_try_between_con ,String catch_exception, String previous_catch_con, String file_path, 
 		String package_name, String class_name, String method_name,int try_loc, int is_try_logged, int try_log_count, String try_log_levels, int is_catch_logged, int catch_log_count, String catch_log_levels,
 		int have_previous_catches,int previous_catches_logged, int is_return_in_try, int is_return_in_catch, int is_catch_object_ignore, int is_interrupted_exception, int is_thread_sleep_try,
-		 int throw_throws_try, int throw_throws_catch, int if_in_try, int if_count_in_try,int is_assert_try, int is_assert_catch, int previous_catches_log_count, int catch_depth, 
+		int throw_throws_try, int throw_throws_catch, int if_in_try, int if_count_in_try,int is_assert_try, int is_assert_catch, int previous_catches_log_count, int catch_depth, 
 		int is_method_have_param, String method_param_as_string_original, String method_param_as_string, String method_param_type, String method_param_name, int method_param_count , 
 		String method_call_names_try,  	int 	method_call_count_try, String operators_in_try, int operators_count_try,
 		String variables_in_try, int variables_count_try, String method_call_names_till_try,  int method_call_count_till_try, String operators_till_try , int  operators_count_till_try,
@@ -686,6 +688,7 @@ public void write_in_db(int try_id, int catch_id, String try_con, String catch_c
 	     util_met  utm =  new util_met();	  
 	    // method_content = utm.replace_quotes_string(method_content);
 	     method_try_between_con = utm.replace_quotes_string(method_try_between_con);
+	     
 	     try_con = utm.replace_quotes_string(try_con);
 	     catch_con =  utm.replace_quotes_string(catch_con);
 	

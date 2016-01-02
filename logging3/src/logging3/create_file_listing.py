@@ -15,6 +15,7 @@ path = "F:\\Research\\Logging3\\result\\"
 ##Server 
 rootdir = "E:\\Sangeeta\\Research\\Logging3\\dataset\\tomcat-8.0.9"
 #rootdir = "E:\\Sangeeta\\Research\\Logging3\\dataset\\cloudstack-4.3.0"
+rootdir = "E:\\Sangeeta\\Research\\Logging3\\dataset\\jboss-as-7.2.0.Final"
 path = "E:\\Sangeeta\\Research\\Logging3\\result\\"
 
 #"""
