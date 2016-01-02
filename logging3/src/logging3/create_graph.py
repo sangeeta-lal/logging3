@@ -4,23 +4,80 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pylab import *
 """
-#This file is used to craete graph for characterization study of logging levels
-1. Function Count Vs. Logging level count
-2.  
+#This file is used to craete graph for characterization study of logging 
+
 """
 
+#Project
+project= "tomcat_"
+#project =  "cloudstack_"
+#project = "jboss_"
+
+
+#"""
 port=3306
 user="root"
-password="123"
+password="1234"
 database="logging_level3"
-table = "tomcat_level_feature"
+catch_training_table = project+"catch_training3"
+"""
+port=3307
+user="sangeetal"
+password="sangeetal"
+database="logging_level3"
+catch_training_table = project+"_catch_training3
+#"""
+
 #To save files on specified locations
-file_path="D:\\Research\\Logging\\result\\graph\\"
+file_path="D:\\Research\\Logging3\\result\\graph\\"
 
 db1= MySQLdb.connect(host="localhost",user=user, passwd=password, db=database, port=port)
 select_cursor = db1.cursor()
+
+#=================Graph 1: Catch======================#
+#@Compares LOC of logged and Non-Logged blocks
+#==============================================#
+
+g1_log = "select try_loc from "+ catch_training_table+ " where is_catch_logged=1"
+select_cursor.execute(g1_log)
+g1_log_db = select_cursor.fetchall()
+
+g1_data_log  = list()
+for d in g1_log_db:
+    g1_data_log.append(d[0])
+
+print "length = ", size(g1_data_log    )
+
+
+g1_non_log = "select try_loc from "+ catch_training_table+ " where is_catch_logged=0"
+select_cursor.execute(g1_non_log)
+g1_non_log_db = select_cursor.fetchall()
+
+g1_data_non_log  = list()
+for d in g1_non_log_db:
+    g1_data_non_log.append(d[0])
+
+print "length = ", size(g1_data_non_log    )
+boxes=[]
+
+boxes.append(g1_data_log)
+boxes.append(g1_data_non_log)
+
+plt.figure()
+plt.hold = True
+plt.show()
+
 """
-#Graph 1
+g1_nl = "select AVG(try_loc) from "+ catch_training_table+ " where is_catch_logged=0"
+select_cursor.execute(str1)
+data1 = select_cursor.fetchall()
+avg_try_loc_non_logged =  data1[0][0]
+
+print "[STB]=", " Avg try Loc Logged=", avg_try_loc_logged, " Avg try Loc Non Logged=", avg_try_loc_non_logged
+
+
+
+Graph 1
 select_str = "select count(*) from " +table+ " where level=\"\""
 print"select str=", select_str
 select_cursor.execute(select_str)
@@ -133,7 +190,7 @@ plt.ylim([-1,20])
 plt.savefig(file_path+"fun-scatter-without-outliers.eps")
 
 plt.show()
-"""
+
 
 #=====================Graph 4================#
 ##To make box plot of log level and LOC
