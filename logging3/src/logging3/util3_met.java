@@ -27,7 +27,7 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
  * */
 
 
-public class util_met 
+public class util3_met 
 {
 
 	public void print_hello()
@@ -36,6 +36,27 @@ public class util_met
 	}
 	
 	public int get_try_loc_count(String con)
+	{
+		//@Comment: This is a specialized method for counting for try block as it counts loc =  loc-2 , because of bracket problem
+		int loc = 0;
+		
+		String loc_arr[] = con.split("\n");
+		for(int i = 0; i< loc_arr.length; i++)
+		{
+			if(is_blank_line(loc_arr[i])!=true)
+			{
+				loc++;
+			}
+		}
+		
+		if(loc!=0)
+		  {loc = loc-2;}
+		
+		return loc;
+		
+	}
+	
+/*	public int get_try_loc_count(String con)
 	{
 		//@Comment: This is a specialized method for counting for try block as it counts loc =  loc-2 , because of bracket problem
 		int loc = 0;
@@ -55,6 +76,24 @@ public class util_met
 		return loc;
 		
 	}
+	*/
+	
+/*	//This function is used for counting LOC 
+	public int get_loc(String con)
+	{
+		int loc=0;
+		String loc_arr[] = con.split("\n");
+		for(int i = 0; i< loc_arr.length; i++)
+		{
+			if(loc_arr[i]!="")
+			{
+				loc++;
+			}
+		}
+			
+		return loc;
+	}*/
+	
 	
 	//This function is used for counting LOC 
 	public int get_loc(String con)
@@ -63,7 +102,7 @@ public class util_met
 		String loc_arr[] = con.split("\n");
 		for(int i = 0; i< loc_arr.length; i++)
 		{
-			if(loc_arr[i]!="")
+			if(is_blank_line(loc_arr[i])!=true)
 			{
 				loc++;
 			}
@@ -730,8 +769,31 @@ public String get_modified_con_for_method_cal_extraction( String method_content,
 	return new_string;
 }
 
+// This function read each line of the file and finds out whether it is an import statement or not
+public boolean is_import_statement(String line_val)
+{
 
+	Pattern pat = Pattern.compile("(import( )+[A-Za-z.]+;)");
+	Matcher matcher = pat.matcher(line_val);
+	
+	while(matcher.find())
+	{
+		return true;
+	}
+	return false;
+}
 
+public boolean is_blank_line(String line_val)
+{
+	
+	
+	if(line_val.trim().isEmpty())
+	{
+		return true;
+	}
+
+ return false;
+}
 
 
 }//class

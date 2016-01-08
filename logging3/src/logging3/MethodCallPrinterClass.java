@@ -51,7 +51,7 @@ public class MethodCallPrinterClass
 
     	// read it with BufferedReader
     	BufferedReader br = new BufferedReader(new InputStreamReader(is));
-    	util_met utm= new util_met();
+    	util3_met utm= new util3_met();
           
         CompilationUnit cu = null;
         try
