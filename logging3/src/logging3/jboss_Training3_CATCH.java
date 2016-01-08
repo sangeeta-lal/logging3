@@ -128,7 +128,7 @@ public class jboss_Training3_CATCH
 	 String password = "1234";
 	   
 	//@Note: create this file using create_file_listing.py
-	 String listing_file_path = "F:\\Research\\Logging3\\result\\jboss-as-7.2.0.Final.txt";
+	 String listing_file_path = "F:\\Research\\Logging3\\result\\jboss-as-7.2.0.Final_java_files.txt";
 	 String non_logged_file_path = "F:\\Research\\Logging3\\result\\jboss_non_log_catch.txt";
 	 String logged_file_path = "F:\\Research\\Logging3\\result\\jboss_log_catch.txt";
 	 String table = "jboss_catch_training3";
@@ -142,7 +142,7 @@ public class jboss_Training3_CATCH
 	 String password = "sangeetal";
 	
 	//@Note: create this file using create_file_listing.py
-	 String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\jboss-as-7.2.0.Final.txt";  
+	 String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\jboss-as-7.2.0.Final_java_files.txt";  
 	 String non_logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\jboss_non_log_catch.txt";
 	 String logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\jboss_log_catch.txt";
 	  String table = "jboss_catch_training3";
