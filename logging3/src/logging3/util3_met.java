@@ -285,9 +285,66 @@ public class util3_met
 		      System.out.println("pattern matched = "+matcher.group(0));*/
 		      
 		      	      
-		      l.log_levels_combined=l.log_levels_combined+" "+ " noLogLevel";
+		      l.log_levels_combined=l.log_levels_combined+" "+ "Unknown";
 			}	
 			
+			
+			//pat:     logIOException( Error reading root log dir this deletion   +  attempt is being aborted ,e);	
+			pat = Pattern.compile("logIOException\\s*\\(.*\\)");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Pat 7:");	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(0));*/
+		      
+		      	      
+		      l.log_levels_combined=l.log_levels_combined+" "+ "Unknown";
+			}	
+			
+			//pat:      logErrorMessage(logFile,e);
+			pat = Pattern.compile("logErrorMessage\\s*\\(.*\\)");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Pat 7:");	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(0));*/
+		      
+		      	      
+		      l.log_levels_combined=l.log_levels_combined+" "+ "Unknown";
+			}	
+			
+			//pat:      logDirNotExist(remoteAppLogDir.toString());
+			pat = Pattern.compile("logDirNotExist\\s*\\(.*\\)");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Pat 7:");	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(0));*/
+		      
+		      	      
+		      l.log_levels_combined=l.log_levels_combined+" "+ "Unknown";
+			}	
+			
+			//pat:     logWarningWhenAuxServiceThrowExceptions(service,AuxServicesEventType.APPLICATION_INIT,th);
+			pat = Pattern.compile("logWarningWhenAuxServiceThrowExceptions\\s*\\(.*\\)");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Pat 7:");	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(0));*/
+		      
+		      	      
+		      l.log_levels_combined=l.log_levels_combined+" "+ "Unknown";
+			}	
+						
 			
 			
 			if(l.log_levels_combined!="")
@@ -312,7 +369,7 @@ public class util3_met
 		System.out.println("level index=" +index);
 		if(index==-1)
 		{
-			level = "NoLogLevel";
+			level = "Unkown";
 			//System.out.println("HelloLevel");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			try 

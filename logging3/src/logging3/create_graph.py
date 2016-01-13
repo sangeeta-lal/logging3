@@ -9,9 +9,10 @@ from pylab import *
 """
 
 #Project
+#"""
 project= "tomcat_"
-title = 'APACHE TOMCAT'
-g1_y_upper = 60
+title = 'Apache Tomcat'
+g1_y_upper = 30
 g1_y_axis_label = "LOC   of   Try-Block"
 
 g2_y_upper = 200
@@ -23,8 +24,29 @@ g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 """
 project =  "cloudstack_"
 graph_title = 'CloudStack'
+
+g1_y_upper = 200
+g1_y_axis_label = "LOC   of   Try-Block"
+
+g2_y_upper = 200
+g2_y_axis_label = "Operator   Counts   of   Try-Block "
+
+g3_y_upper = 200
+g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
+#"""
+
+"""
+project =  "hadoop_"
+graph_title = 'Hadoop'
+
 g1_y_upper = 
 g1_y_axis_label = "LOC   of   Try-Block"
+
+g2_y_upper = 
+g2_y_axis_label = "Operator   Counts   of   Try-Block "
+
+g3_y_upper = 
+g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 #"""
 
 """
@@ -44,19 +66,21 @@ user="sangeetal"
 password="sangeetal"
 database="logging_level3"
 catch_training_table = project+"catch_training3"
-#"""
 
 #To save files on specified locations
 file_path="D:\\Research\\Logging3\\result\\graph\\"
+#"""
+
+
 
 db1= MySQLdb.connect(host="localhost",user=user, passwd=password, db=database, port=port)
 select_cursor = db1.cursor()
 
 #"""
-def plot_var(y_lim_upper, title, y_axis_label):  
+def plot_var(y_lim_upper, title, y_axis_label, quartile_val):  
 
     plt.figure()
-    box= plt.boxplot(data,0, 'bD', patch_artist=True)
+    box= plt.boxplot(data,0, 'bD', patch_artist=True, widths=0.35)
     colors = ['Yellow', 'Blue']
     for patch, color in zip(box['boxes'], colors):
         patch.set_facecolor(color)
@@ -73,9 +97,43 @@ def plot_var(y_lim_upper, title, y_axis_label):
     for flier, color1 in zip(box['fliers'], colors):
         flier.set(marker='o', color=color1, alpha=0.5)
         
-    ylim(0,y_lim_upper)
     
+    #==
+    for line, temp_quartile in zip(box['medians'], quartile_val):
+        # get position data for median line
+        print "1=" ,line
+        x,y = line.get_xydata()[1] # top of median line
+       
+        #extracting values of quartile
+        q1= temp_quartile[0]
+        med=temp_quartile[1]
+        q3= temp_quartile[2]
+        
+        # overlay median value
+        print "y=", y
+        plt.rcParams.update({'font.size': 15})
+        text(x+0.17, y-1.2, 'Q1= %.1f' % q1,
+             horizontalalignment='center') # draw above, centered
+        text(x+0.15, y, 'Med= %.1f' % med,
+             horizontalalignment='center') # draw above, centered
+        text(x+0.17, y+1.2, 'Q3= %.1f' % q3,
+             horizontalalignment='center') # draw above, centered
     
+    #print box.keys()    
+    for line in box['boxes']:
+        print line
+     #   x, y = line.get_ydata() # bottom of left line
+      #  text(x,y, '%.1f' % x,
+      #       horizontalalignment='center', # centered
+      #       verticalalignment='top')      # below
+      #  x, y = line.get_xydata()[3] # bottom of right line
+      #  text(x,y, '%.1f' % x,
+      #       horizontalalignment='center', # centered
+      #           verticalalignment='top')     
+
+    #==
+    
+    ylim(0,y_lim_upper) 
     plt.rcParams.update({'font.size': 22})
     ax = axes()
     ax.set_xticklabels(['Logged ', 'Non Logged'])
@@ -105,8 +163,26 @@ for d in g1_non_log_db:
 print "length log = ", size(g1_data_log    ),"length  non= ", size(g1_data_non_log    )
 data= [g1_data_log, g1_data_non_log]
 
+log_quartile = list()
+non_log_quartile = list()
+
+q1_log= np.percentile(g1_data_log, 25)
+med_log= np.median(g1_data_log)
+q3_log = np.percentile(g1_data_log, 75)
+log_quartile.append(q1_log)
+log_quartile.append(med_log)
+log_quartile.append(q3_log)
+
+q1_non_log= np.percentile(g1_data_non_log, 25)
+med_non_log = np.median(g1_data_non_log)
+q3_non_log = np.percentile(g1_data_non_log, 75)
+non_log_quartile.append(q1_non_log)
+non_log_quartile.append(med_non_log)
+non_log_quartile.append(q3_non_log)
+
+quartile_val  = [log_quartile, non_log_quartile]
 #==Call inbuilt function===#
-plot_var(g1_y_upper, title, g1_y_axis_label)
+plot_var(g1_y_upper, title, g1_y_axis_label, quartile_val)
 plt.show()
 
 

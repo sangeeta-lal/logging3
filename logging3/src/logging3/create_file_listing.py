@@ -8,7 +8,6 @@ import os
 
 #rootdir = "F:\\Research\\Logging3\\dataset\\tomcat-8.0.9"
 #rootdir = "F:\\Research\\Logging3\\dataset\\cloudstack-4.3.0"
-#rootdir = "F:\\Research\\Logging3\\dataset\\jboss-as-7.2.0.Final"
 rootdir = "F:\\Research\\Logging3\\dataset\\hadoop-2.7.1-src"
 path = "F:\\Research\\Logging3\\result\\"
 
