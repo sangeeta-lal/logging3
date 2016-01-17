@@ -36,7 +36,7 @@ g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 #"""
 
 """
-project =  "hadoop_"
+project =  "hd_"
 graph_title = 'Hadoop'
 
 g1_y_upper = 

@@ -8,14 +8,14 @@ import os
 
 #rootdir = "F:\\Research\\Logging3\\dataset\\tomcat-8.0.9"
 #rootdir = "F:\\Research\\Logging3\\dataset\\cloudstack-4.3.0"
-rootdir = "F:\\Research\\Logging3\\dataset\\hadoop-2.7.1-src"
+rootdir = "F:\\Research\\Logging3\\dataset\\hd"
 path = "F:\\Research\\Logging3\\result\\"
 
 """
 ##Server 
 rootdir = "E:\\Sangeeta\\Research\\Logging3\\dataset\\tomcat-8.0.9"
 #rootdir = "E:\\Sangeeta\\Research\\Logging3\\dataset\\cloudstack-4.3.0"
-rootdir = "E:\\Sangeeta\\Research\\Logging3\\dataset\\hadoop-2.7.1-src"
+rootdir = "E:\\Sangeeta\\Research\\Logging3\\dataset\\hd"
 path = "E:\\Sangeeta\\Research\\Logging3\\result\\"
 
 #"""
