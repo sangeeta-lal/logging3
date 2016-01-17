@@ -291,7 +291,7 @@ public class util3_met
 			
 			
 			//pat:     logIOException( Error reading root log dir this deletion   +  attempt is being aborted ,e);	
-			pat = Pattern.compile("[^]\\s*log[a-zA-Z-]+\\s*\\(.*\\)");
+			pat = Pattern.compile("([^]\\s*log[a-zA-Z-]+\\s*\\(.*\\))");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())
 			{
