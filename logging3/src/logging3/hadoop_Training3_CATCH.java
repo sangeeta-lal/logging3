@@ -128,7 +128,7 @@ public class hadoop_Training3_CATCH
 	 String password = "1234";
 	   
 	//@Note: create this file using create_file_listing.py
-	 String listing_file_path = "F:\\Research\\Logging3\\result\\hd.txt";
+	 String listing_file_path = "F:\\Research\\Logging3\\result\\hd_java_files.txt";
 	 String non_logged_file_path = "F:\\Research\\Logging3\\result\\hd_non_logged_catch.txt";
 	 String logged_file_path = "F:\\Research\\Logging3\\result\\hd_logged_catch.txt";
 	 String table = "hd_catch_training3";
@@ -142,7 +142,7 @@ public class hadoop_Training3_CATCH
 	 String password = "sangeetal";
 	
 	//@Note: create this file using create_file_listing.py
-	 String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\hd.txt";  
+	 String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\hd_java_files.txt";  
 	 String non_logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\hd_non_logged.txt";
 	 String logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\hd_logged.txt";
 	  String table = "hd_catch_training3";
