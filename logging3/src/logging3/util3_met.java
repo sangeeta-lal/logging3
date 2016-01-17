@@ -226,7 +226,7 @@ public class util3_met
 			}
 			
 			
-			pat = Pattern.compile("log.append\\(.*\\)");
+			pat = Pattern.compile("^\\s*log.append\\(.*\\)");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())
 			{
@@ -345,7 +345,7 @@ public class util3_met
 		System.out.println("level index=" +index);
 		if(index==-1)
 		{
-			level = "Unkown";
+			level = "Unkown4";
 			//System.out.println("HelloLevel");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			try 
