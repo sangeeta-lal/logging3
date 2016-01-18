@@ -211,7 +211,7 @@ public class util3_met
 			
 			//pattern: log(""Error closing redirector: "" + ioe.getMessage(),Project.MSG_ERR)
 		    
-			pat = Pattern.compile("^[\\s\n]*log\\(.*\\)");
+			pat = Pattern.compile("^\\s*log\\(.*\\)");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())
 			{
@@ -291,7 +291,7 @@ public class util3_met
 			
 			
 			//pat:     logIOException( Error reading root log dir this deletion   +  attempt is being aborted ,e);	
-			pat = Pattern.compile("^\\s*log[a-zA-Z-]+\\s*\\(.*\\)");
+			pat = Pattern.compile("^\\s*log[a-zA-Z_]+\\s*\\(.*\\)");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())
 			{
@@ -307,7 +307,7 @@ public class util3_met
 					
 			
 			//pat:  RumitLogger.logIOException( Error reading root log dir this deletion   +  attempt is being aborted ,e);	
-			pat = Pattern.compile("[A-Za-z_]+\\.\\s*log[a-zA-Z-]+\\s*\\(.*\\)");
+			pat = Pattern.compile("[A-Za-z_\\(\\)\\.]+\\.\\s*log[a-zA-Z_]+\\s*\\(.*\\)");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())
 			{
