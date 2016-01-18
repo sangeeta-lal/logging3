@@ -211,7 +211,8 @@ public class util3_met
 			
 			//pattern: log(""Error closing redirector: "" + ioe.getMessage(),Project.MSG_ERR)
 		    
-			pat = Pattern.compile("^\\s*log\\(.*\\)");
+			//pat = Pattern.compile("\\{?[\\s\\n]*log\\(.*\\)");
+			pat = Pattern.compile("[^\\(][\\s\n]*log\\(.*\\)");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())
 			{
@@ -318,9 +319,7 @@ public class util3_met
 		      
 		      	      
 		      l.log_levels_combined=l.log_levels_combined+" "+ "Unknown3";
-			}	
-			
-						
+			}					
 			
 			
 			if(l.log_levels_combined!="")
