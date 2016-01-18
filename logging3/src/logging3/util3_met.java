@@ -211,14 +211,14 @@ public class util3_met
 			
 			//pattern: log(""Error closing redirector: "" + ioe.getMessage(),Project.MSG_ERR)
 		    
-			pat = Pattern.compile("[\\s\n]*log\\(.*\\)");
+			pat = Pattern.compile("^[\\s\n]*log\\(.*\\)");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())
 			{
-			  /*System.out.println("Pat 3:");	
+			  System.out.println("Pat 3:");	
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
-		      System.out.println("pattern matched = "+matcher.group(0));*/
+		      System.out.println("pattern matched = "+matcher.group(0));
 		      
 		      String level = get_non_standard_log_levels(string_content, matcher.start());		      
 		      l.log_levels_combined=l.log_levels_combined+" "+ level;
@@ -226,7 +226,7 @@ public class util3_met
 			}
 			
 			
-			pat = Pattern.compile("^\\s*log.append\\(.*\\)");
+			pat = Pattern.compile("log.append\\(.*\\)");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())
 			{
@@ -340,7 +340,7 @@ public class util3_met
 		int end_index= string_content.indexOf(")", start_index);
 		String substring = string_content.substring(start_index, end_index);
 		
-		//System.out.println("Substring oitside="+ substring);
+		System.out.println("Substring oitside="+ substring);
 		int index =  substring.indexOf("Level");
 		System.out.println("level index=" +index);
 		if(index==-1)
