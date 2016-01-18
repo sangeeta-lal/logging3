@@ -18,11 +18,20 @@ public class test3
 	  String s4="{ hbjbj  \n "+
  " log( Error closing redirector:   + ioe.getMessage(),Project.MSG_ERR);"+
 "}";
-  System.out.println("s4="+s4);
+	  
+	  
+	  String s5= "{  "+
+  "String message= Cannot create JDBC driver of class    + (driverClassName != null ? driverClassName :   ) +    for connect URL   + url+  \n   ;  "+
+  " logWriter.println(message); "+
+  " t.printStackTrace(logWriter);  "+
+ " throw new SQLException(message,t);  "+
+"  }";
+
+  System.out.println("s5="+s5);
 
 	  util3_met um = new util3_met();
 	  log_level_interface l = new log_level_interface();
-	  l =um.find_and_set_logging_level(s, l);
+	  l =um.find_and_set_logging_level(s5, l);
 	  
 	  System.out.println(" l="+ l.log_count+  "  levels="+ l.log_levels_combined);
 	  

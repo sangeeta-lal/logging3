@@ -344,7 +344,7 @@ public class util3_met
 		System.out.println("level index=" +index);
 		if(index==-1)
 		{
-			level = "Unkown4";
+			level = "Unknown4";
 			//System.out.println("HelloLevel");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			try 
