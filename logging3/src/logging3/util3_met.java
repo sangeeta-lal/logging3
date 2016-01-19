@@ -464,6 +464,20 @@ public class util3_met
 		      l.log_levels_combined=l.log_levels_combined+" "+ "Unknown3";
 			}					
 			
+			//pat:    logPermissions();
+			pat = Pattern.compile("logPermissions\\s*\\(.*\\)");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Pat 7:");	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(0));*/
+		      
+		      	      
+		      l.log_levels_combined=l.log_levels_combined+" "+ "Unknown5";
+			}					
+			
 			
 			if(l.log_levels_combined!="")
 			{
@@ -487,7 +501,7 @@ public class util3_met
 		System.out.println("level index=" +index);
 		if(index==-1)
 		{
-			level = "Unknown4";
+			level = "Unknown5";
 			//System.out.println("HelloLevel");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			try 
