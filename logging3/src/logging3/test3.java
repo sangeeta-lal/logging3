@@ -31,11 +31,17 @@ public class test3
       " logDebug(e,key,1);  "+
      "  terminate(key);  "+
 "   }";
-  System.out.println("s5="+s5);
+	  
+	  String s7 = "{  "+  
+         " logPermissions();  " +
+  "   throw ae;  "+
+"  }"	;
+	  
+  System.out.println("s7="+s7);
 
 	  util3_met um = new util3_met();
 	  log_level_interface l = new log_level_interface();
-	  l =um.find_and_set_logging_level(s6, l);
+	  l =um.find_and_set_logging_level(s7, l);
 	  
 	  System.out.println(" l="+ l.log_count+  "  levels="+ l.log_levels_combined);
 	  
