@@ -127,17 +127,7 @@ public class util3_met
 		      
 			}	
 			
-			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logInfo\\()");
-			matcher = pat.matcher(string_content);
-			while(matcher.find())
-			{
-			  /*System.out.println("Start Index ="+matcher.start());	
-			  System.out.print("Start index: " + matcher.start());
-		      System.out.print(" End index: " + matcher.end() + " ");
-		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"info";
-		      
-			}	
+		
 			
 			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]+\\.trace\\()");
 			matcher = pat.matcher(string_content);
@@ -194,6 +184,147 @@ public class util3_met
 		      l.log_levels_combined=l.log_levels_combined+" "+(matcher.group(1).split("\\.")[1]).split("\\(")[0];;
 			} 
 			
+			
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logInfo\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"info";
+		      
+			}	
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logI\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"info";
+		      
+			}
+			
+
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logTrace\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"trace";
+		      
+			}	
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logT\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"trace";
+		      
+			}
+			
+
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logDebug\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"debug";
+		      
+			}	
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logD\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"debug";
+		      
+			}
+
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logWarn\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"warn";
+		      
+			}	
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logW\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"warn";
+		      
+			}
+
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logError\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"error";
+		      
+			}	
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logE\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"error";
+		      
+			}
+			
+			
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logFatal\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"fatal";
+		      
+			}	
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logF\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"fatal";
+		      
+			}
 			//Pattern:  project.log(""wrong object reference "" + refId + "" - ""+ pref.getClass());
 			/*pat = Pattern.compile("([a-zA-Z0-9_]+\\.log\\()");
 			matcher = pat.matcher(string_content);
