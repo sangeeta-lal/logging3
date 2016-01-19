@@ -127,6 +127,18 @@ public class util3_met
 		      
 			}	
 			
+			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logInfo\\()");
+			matcher = pat.matcher(string_content);
+			while(matcher.find())
+			{
+			  /*System.out.println("Start Index ="+matcher.start());	
+			  System.out.print("Start index: " + matcher.start());
+		      System.out.print(" End index: " + matcher.end() + " ");
+		      System.out.println("pattern matched = "+matcher.group(1));*/
+		      l.log_levels_combined=l.log_levels_combined+"  "+"info";
+		      
+			}	
+			
 			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]+\\.trace\\()");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())
