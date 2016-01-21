@@ -69,7 +69,7 @@ database="logging_level3"
 catch_training_table = project+"catch_training3"
 
 #To save files on specified locations
-file_path="E:\\Research\\Logging3\\result\\"
+file_path="E:\\Sangeeta\\Research\\Logging3\\result\\"
 #"""
 
 
