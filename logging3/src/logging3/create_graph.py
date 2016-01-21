@@ -9,51 +9,51 @@ from pylab import *
 """
 
 #Project
-"""
+#"""
 project= "tomcat_"
 title = 'Apache Tomcat'
 g1_y_upper = 30
 g1_y_axis_label = "LOC   of   Try-Block"
 
-g2_y_upper = 200
+g2_y_upper = 80
 g2_y_axis_label = "Operator   Counts   of   Try-Block "
 
 g3_y_upper = 50
 g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 
-"""
+#"""
 """
 project =  "cloudstack_"
 title = 'CloudStack'
 
-g1_y_upper = 200
+g1_y_upper = 50
 g1_y_axis_label = ""
 
-g2_y_upper = 200
-g2_y_axis_label = "Operator   Counts   of   Try-Block "
+g2_y_upper = 80
+g2_y_axis_label = " "
 
-g3_y_upper = 200
-g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
+g3_y_upper = 50
+g3_y_axis_label = " "
 #"""
 
-#"""
+"""
 project =  "hd_"
 title = 'Hadoop'
 
 g1_y_upper = 30
 g1_y_axis_label = "" 
 
-g2_y_upper =  200
+g2_y_upper =  80
 g2_y_axis_label = "Operator   Counts   of   Try-Block "
 
-g3_y_upper = 200
+g3_y_upper = 50
 g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 #"""
 
 
 
 
-"""
+#"""
 port=3306
 user="root"
 password="1234"
@@ -71,7 +71,6 @@ catch_training_table = project+"catch_training3"
 #To save files on specified locations
 file_path="E:\\Sangeeta\\Research\\Logging3\\result\\"
 #"""
-
 
 
 db1= MySQLdb.connect(host="localhost",user=user, passwd=password, db=database, port=port)
@@ -185,7 +184,7 @@ quartile_val  = [log_quartile, non_log_quartile]
 #==Call inbuilt function===#
 plot_var(g1_y_upper, title, g1_y_axis_label, quartile_val)
 #plt.show()
-plt.savefig(file_path+ "g1-try-loc\\"+project+"g1.png")
+#plt.savefig(file_path+ "g1-try-loc\\"+project+"g1.png")
 
 #==== Graph 2==================#
 #@Compare operator count of logged and non logged catch blocks===#
@@ -208,8 +207,30 @@ for d in g2_non_log_db:
 print "length log = ", size(g2_data_log ),"length  non= ", size(g2_data_non_log    )
 data= [g2_data_log, g2_data_non_log]
 
-plot_var(g2_y_upper, title, g2_y_axis_label)
+
+log_quartile = list()
+non_log_quartile = list()
+
+q1_log= np.percentile(g2_data_log, 25)
+med_log= np.median(g2_data_log)
+q3_log = np.percentile(g2_data_log, 75)
+log_quartile.append(q1_log)
+log_quartile.append(med_log)
+log_quartile.append(q3_log)
+
+q1_non_log= np.percentile(g2_data_non_log, 25)
+med_non_log = np.median(g2_data_non_log)
+q3_non_log = np.percentile(g2_data_non_log, 75)
+non_log_quartile.append(q1_non_log)
+non_log_quartile.append(med_non_log)
+non_log_quartile.append(q3_non_log)
+
+quartile_val  = [log_quartile, non_log_quartile]
+
+
+plot_var(g2_y_upper, title, g2_y_axis_label, quartile_val)
 plt.show()
+plt.savefig(file_path+ "g2-try-op\\"+project+"g2.png")
 
 
 
@@ -234,7 +255,26 @@ for d in g3_non_log_db:
 print "length log = ", size(g3_data_log ),"length  non= ", size(g3_data_non_log    )
 data= [g3_data_log, g3_data_non_log]
 
-plot_var(g3_y_upper, title, g3_y_axis_label)
+log_quartile = list()
+non_log_quartile = list()
+
+q1_log= np.percentile(g3_data_log, 25)
+med_log= np.median(g3_data_log)
+q3_log = np.percentile(g3_data_log, 75)
+log_quartile.append(q1_log)
+log_quartile.append(med_log)
+log_quartile.append(q3_log)
+
+q1_non_log= np.percentile(g3_data_non_log, 25)
+med_non_log = np.median(g3_data_non_log)
+q3_non_log = np.percentile(g3_data_non_log, 75)
+non_log_quartile.append(q1_non_log)
+non_log_quartile.append(med_non_log)
+non_log_quartile.append(q3_non_log)
+
+quartile_val  = [log_quartile, non_log_quartile]
+
+plot_var(g3_y_upper, title, g3_y_axis_label, quartile_val)
 plt.show()
 
 #"""
