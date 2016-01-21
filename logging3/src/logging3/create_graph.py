@@ -40,7 +40,7 @@ project =  "hd_"
 graph_title = 'Hadoop'
 
 g1_y_upper = 
-g1_y_axis_label = ""
+g1_y_axis_label = "" 
 
 g2_y_upper = 
 g2_y_axis_label = "Operator   Counts   of   Try-Block "
