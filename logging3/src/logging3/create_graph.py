@@ -26,7 +26,7 @@ project =  "cloudstack_"
 graph_title = 'CloudStack'
 
 g1_y_upper = 200
-g1_y_axis_label = "LOC   of   Try-Block"
+g1_y_axis_label = ""
 
 g2_y_upper = 200
 g2_y_axis_label = "Operator   Counts   of   Try-Block "
@@ -40,7 +40,7 @@ project =  "hd_"
 graph_title = 'Hadoop'
 
 g1_y_upper = 
-g1_y_axis_label = "LOC   of   Try-Block"
+g1_y_axis_label = ""
 
 g2_y_upper = 
 g2_y_axis_label = "Operator   Counts   of   Try-Block "
@@ -50,8 +50,7 @@ g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 #"""
 
 """
-#project = "jboss_"
-#"""
+
 
 
 #"""
@@ -60,7 +59,9 @@ user="root"
 password="1234"
 database="logging_level3"
 catch_training_table = project+"catch_training3"
+file_path="F:\\Research\\Logging3\\result\\"
 """
+
 port=3307
 user="sangeetal"
 password="sangeetal"
@@ -68,7 +69,7 @@ database="logging_level3"
 catch_training_table = project+"catch_training3"
 
 #To save files on specified locations
-file_path="D:\\Research\\Logging3\\result\\graph\\"
+file_path="D:\\Research\\Logging3\\result\\"
 #"""
 
 
@@ -183,8 +184,8 @@ non_log_quartile.append(q3_non_log)
 quartile_val  = [log_quartile, non_log_quartile]
 #==Call inbuilt function===#
 plot_var(g1_y_upper, title, g1_y_axis_label, quartile_val)
-plt.show()
-
+#plt.show()
+plt.savefig(file_path+ "g1-try-loc\\"+project+"g1.png")
 
 #==== Graph 2==================#
 #@Compare operator count of logged and non logged catch blocks===#
