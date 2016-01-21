@@ -9,7 +9,7 @@ from pylab import *
 """
 
 #Project
-#"""
+"""
 project= "tomcat_"
 title = 'Apache Tomcat'
 g1_y_upper = 30
@@ -36,7 +36,7 @@ g3_y_upper = 200
 g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 #"""
 
-"""
+#"""
 project =  "hd_"
 title = 'Hadoop'
 
@@ -46,14 +46,14 @@ g1_y_axis_label = ""
 g2_y_upper =  200
 g2_y_axis_label = "Operator   Counts   of   Try-Block "
 
-g3_y_upper = 
+g3_y_upper = 200
 g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 #"""
 
 
 
 
-#"""
+"""
 port=3306
 user="root"
 password="1234"
@@ -69,7 +69,7 @@ database="logging_level3"
 catch_training_table = project+"catch_training3"
 
 #To save files on specified locations
-file_path="D:\\Research\\Logging3\\result\\"
+file_path="E:\\Research\\Logging3\\result\\"
 #"""
 
 
