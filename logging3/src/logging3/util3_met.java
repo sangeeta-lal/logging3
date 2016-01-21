@@ -581,7 +581,7 @@ public class util3_met
 	{
 
 	  int contains_return_stmt=0;
-	  
+	  //return  : space is added intetionalyy in the regEx
 	   contains_return_stmt=	content.contains("return ")?1:0;
 		
 		return contains_return_stmt;
@@ -593,7 +593,9 @@ public class util3_met
 		catch_exp_with_obj= catch_exp_with_obj.toString().toLowerCase();
 	
 		int obj_contains_ignore=0;
-		
+
+		  // ignore : space is added intetionalyy in the regEx
+		 
 		obj_contains_ignore=catch_exp_with_obj.contains(" ignore")?1:0;
 		return obj_contains_ignore;
 	}
@@ -804,7 +806,7 @@ public class util3_met
 		//@This pattern 1: It can find operators in a give string  
 		// operators: =, *,&, +, -, %,!, (), [],  &,? ,:,>, <, ^, ~
 		//******************************************************************************************************//		
-		Pattern pat = Pattern.compile("([=*+\\-%!\\(\\)\\[\\]&\\?:|><^~])");
+		Pattern pat = Pattern.compile("([=*+\\-%!\\(\\)\\[\\]&\\?:|><^~/])");
 		Matcher matcher = pat.matcher(try_con);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		try 

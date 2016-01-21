@@ -37,13 +37,16 @@ public class test3
   "   throw ae;  "+
 "  }"	;
 	  
+	  s7 = "a/b";
   System.out.println("s7="+s7);
 
 	  util3_met um = new util3_met();
 	  log_level_interface l = new log_level_interface();
 	  l =um.find_and_set_logging_level(s7, l);
 	  
-	  System.out.println(" l="+ l.log_count+  "  levels="+ l.log_levels_combined);
+	  
+	  operator_and_operator_count oaoc_try = new  operator_and_operator_count();
+	System.out.println(" l="+ l.log_count+  "  levels="+ l.log_levels_combined+  um.get_operators_and_count(s7, oaoc_try).operator);
 	  
   }
 }
