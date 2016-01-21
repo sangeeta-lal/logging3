@@ -22,8 +22,9 @@ g3_y_upper = 50
 g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 
 """
+"""
 project =  "cloudstack_"
-graph_title = 'CloudStack'
+title = 'CloudStack'
 
 g1_y_upper = 200
 g1_y_axis_label = ""
@@ -37,19 +38,18 @@ g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 
 """
 project =  "hd_"
-graph_title = 'Hadoop'
+title = 'Hadoop'
 
-g1_y_upper = 
+g1_y_upper = 30
 g1_y_axis_label = "" 
 
-g2_y_upper = 
+g2_y_upper =  200
 g2_y_axis_label = "Operator   Counts   of   Try-Block "
 
 g3_y_upper = 
 g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 #"""
 
-"""
 
 
 
