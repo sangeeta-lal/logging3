@@ -186,7 +186,7 @@ plot_var(g1_y_upper, title, g1_y_axis_label, quartile_val)
 #plt.show()
 #plt.savefig(file_path+ "g1-try-loc\\"+project+"g1.png")
 
-#==== Graph 2==================#
+#==== Graph 2===================#
 #@Compare operator count of logged and non logged catch blocks===#
 #================================================================#
 g2_log = "select operators_count_in_try from "+ catch_training_table+ " where  is_catch_logged=1"
@@ -276,6 +276,7 @@ quartile_val  = [log_quartile, non_log_quartile]
 
 plot_var(g3_y_upper, title, g3_y_axis_label, quartile_val)
 plt.show()
+plt.savefig(file_path+ "g3-try-method-call\\"+project+"g3.png")
 
 #"""
 
