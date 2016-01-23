@@ -464,4 +464,37 @@ with open(file_path+"\\"+project+"top-20.csv", 'wb') as csvfile:
             
          #spamwriter.writerow([method_name+((str)(count)),debug_count,error_count,warn_count,info_count,trace_count,fatal_count])        
   
+
+
+#====================================================================================
+# G6: It is about co-existence of logged and non-logged catch blocks together
+#=====================================================================================  
+
+
+unique_try_blocks = 0
+mix_try_blocks = 0
+try_blocks_more_than_1_catch = 0
+ 
+str1= " select   distinct try_id  from "+ catch_training_table    
+select_cursor.execute(str1)
+data1 = select_cursor.fetchall()
+
+for d in data1:
+    unique_try_blocks = d[0]
+
+str_mix_logged_non_logged = "select distinct try_id from  "+ catch_training_table+ " where is_catch_logged=0 and try_id in (select   distinct try_id  from  "+ catch_training_table+ " where is_catch_logged=1) "    
+select_cursor.execute(str_mix_logged_non_logged)
+data2 =  select_cursor.fetchall()
+
+for d in data2:
+    mix_try_blocks = d[0]
     
+
+str_more_than_1_catch  = "select    try_id, count(*)  from  " +  catch_training_table  + "  group by try_id    having count(*) >1 "
+select_cursor.execute(str_more_than_1_catch)
+data3 = select_cursor.fetchall()
+for d in data3:
+    try_blocks_more_than_1_catch =  d[0]
+
+print " Unique Try block = ", unique_try_blocks,  "  mix try blocks=", mix_try_blocks      
+  
