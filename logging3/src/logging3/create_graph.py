@@ -496,5 +496,5 @@ data3 = select_cursor.fetchall()
 for d in data3:
     try_blocks_more_than_1_catch =  d[0]
 
-print " Unique Try block = ", unique_try_blocks,  "  mix try blocks=", mix_try_blocks      
+print " Unique Try block = ", unique_try_blocks,  "  mix try blocks=", mix_try_blocks, "  try blocks more than 1 catch block=",  try_blocks_more_than_1_catch    
   
