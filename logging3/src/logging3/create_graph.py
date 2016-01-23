@@ -495,9 +495,9 @@ data3 = select_cursor.fetchall()
 for d in data3:
     try_blocks_more_than_1_catch =  d[0]
  
-drop_temp= "select count(*) from temp"
+drop_temp= "drop table temp"
 select_cursor.execute(drop_temp)  
-db1.commit()# 
+db1.commit()# ==delete the table
 
 str_mix_logged_non_logged = "select count( distinct try_id)  from  "+ catch_training_table+ " where is_catch_logged=0 and try_id in (select   distinct try_id  from  "+ catch_training_table+ " where is_catch_logged=1) "    
 select_cursor.execute(str_mix_logged_non_logged)
