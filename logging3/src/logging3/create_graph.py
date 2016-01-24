@@ -292,7 +292,7 @@ pos_count_threshold = 5
 neg_count_threshold = 10
 
 pos_ratio_threshold = 60.0
-neg_ratio_threshold = 100.0
+neg_ratio_threshold = 80.0
 exc_count_above_threshold= list()
 exc_pos_ratio_above_threshold =list()
 exc_neg_ratio_above_threshold =list()
