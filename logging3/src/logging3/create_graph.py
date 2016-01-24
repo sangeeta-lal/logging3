@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pylab import *
 import csv
+import re
 """
 #This file is used to craete graph for characterization study of logging 
 
@@ -51,7 +52,6 @@ g2_y_axis_label = " "
 g3_y_upper = 30
 g3_y_axis_label = " "
 #"""
-
 
 
 
@@ -339,6 +339,9 @@ for temp_exc in unique_exc:
             
         pos_ratio = ((pos_count*100)/total_count)
         neg_ratio = ((neg_count*100)/total_count)
+        
+        if temp_exc!='Exception':
+            temp_exc= re.sub('Exception$','',temp_exc)
         
         temp_obj_list =list()
         if pos_ratio >= pos_ratio_threshold:
