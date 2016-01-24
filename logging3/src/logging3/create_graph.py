@@ -281,13 +281,15 @@ plot_var(g3_y_upper, title, g3_y_axis_label, quartile_val)
 #plt.show()
 #plt.savefig(file_path+ "g3-try-method-call\\"+project+"g3.png")
 
-
+"""
 
 
 #===========================================================
 # @Graph4: Exception Type Vs. Positive or Negative Logging ratio
 #==============================================================
-total_count_threshold = 5
+pos_count_threshold = 5
+neg_count_threshold = 10
+
 pos_ratio_threshold = 60.0
 neg_ratio_threshold = 100.0
 exc_count_above_threshold= list()
@@ -313,7 +315,7 @@ for temp_exc in unique_exc:
     for d in data1:
         total_count = d[0]
         
-    if total_count >= total_count_threshold:
+    if total_count >= pos_count_threshold:
        
         pos_str = "select count(*)  from   " + catch_training_table +  "  where catch_exc = '"+ temp_exc+ "'  and is_catch_logged = 1"
         select_cursor.execute(pos_str)
@@ -323,7 +325,8 @@ for temp_exc in unique_exc:
         for d in data2:  
             pos_count =d[0]     
         
-        
+            
+    if total_count >= neg_count_threshold:    
         neg_str = "select count(*)  from   " + catch_training_table +  "  where catch_exc = '"+ temp_exc+ "'  and is_catch_logged = 0"
         select_cursor.execute(neg_str)
         data2 = select_cursor.fetchall()
@@ -382,7 +385,7 @@ plt.tight_layout()
 plt.xticks(ind, exc_list, rotation=290, fontsize=20,  ha='left')
 
 #plt.show()
-plt.savefig("F:\\Research\\Logging3\\result\\g-exc-ratio\\pos_ratio_tomcat.png",bbox_inches='tight')
+plt.savefig(file_path+"g-exc-ratio\\pos_ratio_tomcat.png",bbox_inches='tight')
 
 
 #=== neg plot===#
@@ -413,13 +416,12 @@ plt.tight_layout()
 plt.xticks(ind, exc_list, rotation=290, fontsize=20,  ha='left')
 
 #plt.show()
-plt.savefig("F:\\Research\\Logging3\\result\\g-exc-ratio\\neg_ratio_tomcat.png",bbox_inches='tight')
-"""
+plt.savefig(file_path+"g-exc-ratio\\neg_ratio_tomcat.png",bbox_inches='tight')
 
 
-"""#==============================================================================================
-G5: Print logging ratio of 20 most popular exceptions.
-=================================================================================================#"""
+#================================================================================================#
+#G5: Print logging ratio of 20 most popular exceptions.
+#=================================================================================================#
 
 str1= "select catch_exc, count(*)  from  "+  catch_training_table + "  group by catch_exc  order by count(*)  desc limit 0, 20" 
 select_cursor.execute(str1)
