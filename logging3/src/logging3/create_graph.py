@@ -389,7 +389,7 @@ plt.tight_layout()
 plt.xticks(ind, exc_list, rotation=290, fontsize=20,  ha='left')
 
 #plt.show()
-plt.savefig(file_path+"g-exc-ratio\\pos_ratio_tomcat.png",bbox_inches='tight')
+plt.savefig(file_path+"g-exc-ratio\\"+project+"pos_ratio.png",bbox_inches='tight')
 
 
 #=== neg plot===#
@@ -420,7 +420,7 @@ plt.tight_layout()
 plt.xticks(ind, exc_list, rotation=290, fontsize=20,  ha='left')
 
 #plt.show()
-plt.savefig(file_path+"g-exc-ratio\\neg_ratio_tomcat.png",bbox_inches='tight')
+plt.savefig(file_path+"g-exc-ratio\\"+project+"neg_ratio.png",bbox_inches='tight')
 
 
 #================================================================================================#
