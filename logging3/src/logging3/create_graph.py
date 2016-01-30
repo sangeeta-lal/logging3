@@ -61,6 +61,7 @@ user="root"
 password="1234"
 database="logging_level3"
 catch_training_table = project+"catch_training3"
+ratio_table= project+"catch_logging_ratio"
 file_path="F:\\Research\\Logging3\\result\\"
 """
 
@@ -69,7 +70,7 @@ user="sangeetal"
 password="sangeetal"
 database="logging_level3"
 catch_training_table = project+"catch_training3"
-
+ratio_table= project+"catch_logging_ratio"
 #To save files on specified locations
 file_path="E:\\Sangeeta\\Research\\Logging3\\result\\"
 #"""
@@ -463,13 +464,11 @@ with open(file_path+"\\"+project+"top-20.csv", 'wb') as csvfile:
     
     #====================Graph5==============================#
     #==================heatMap================================#
-    
+   
     for row in exc_info:
         
-         spamwriter.writerow([row[0]+ ","+(str)(row[1])+","+(str)(row[2])+","+(str)(row[3] ) +","+(str)((row[2]*100)/row[1])+"," +(str)((row[3]*100)/row[1])])
-            
-         #spamwriter.writerow([method_name+((str)(count)),debug_count,error_count,warn_count,info_count,trace_count,fatal_count])        
-  
+         spamwriter.writerow([row[0]+ ","+(str)(row[1])+","+(str)(row[2])+","+(str)(row[3] ) +","+(str)((float)(((row[2]*100.0)/row[1]*1.0)))+"," +(str)((float)((((row[3]*100.0)/row[1]*1.0))))])
+        
 
 
 #====================================================================================
@@ -515,3 +514,13 @@ for d in data2:
 
 print " Unique Try block = ", unique_try_blocks,  "  mix try blocks=", mix_try_blocks, "  try blocks more than 1 catch block=",  try_blocks_more_than_1_catch    
   
+  
+#=================================================================================================
+#  G7:  Making graph for 
+#=================================================================================================  
+
+ratio_details=list()
+str1 ="  select catch_exc, sum()   from "  +  ratio_table  + "  where  exc_total_catch_ratio <=0.05"
+select_cursor.execute(str1)
+
+
