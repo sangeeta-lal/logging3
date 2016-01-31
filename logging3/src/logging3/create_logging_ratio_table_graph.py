@@ -65,6 +65,9 @@ insert_cursor = db1.cursor()
 
 del_str = " delete from " + ratio_table
 select_cursor.execute(del_str)
+
+del_str = " delete from "+insert_table
+select_cursor.execute(del_str)
 db1.commit()
 #=======================================
 
