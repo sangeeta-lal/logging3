@@ -40,6 +40,7 @@ password="1234"
 database="logging_level3"
 catch_training_table = project+"catch_training3"
 ratio_table =project+ "catch_logging_ratio"
+insert_table=project+"exc_count_vs_log_ratio_graph"
 file_path="F:\\Research\\Logging3\\result\\"
 """
 
@@ -49,7 +50,7 @@ password="sangeetal"
 database="logging_level3"
 catch_training_table = project+"catch_training3"
 ratio_table =project+ "catch_logging_ratio"
-
+insert_table=project+"exc_count_vs_log_ratio_graph"
 #To save files on specified locations
 file_path="E:\\Sangeeta\\Research\\Logging3\\result\\"
 #"""
@@ -58,6 +59,14 @@ db1= MySQLdb.connect(host="localhost",user=user, passwd=password, db=database, p
 select_cursor = db1.cursor()
 insert_cursor = db1.cursor()
 
+#======================================
+#  Delete from ratio table
+#======================================
+
+del_str = " delete from " + ratio_table
+select_cursor.execute(del_str)
+db1.commit()
+#=======================================
 
 total_catch_count = 0
 total_log_catch_count = 0
@@ -101,7 +110,7 @@ for d in data1:
     non_logging_ratio          =  round(exc_non_log_count*1.0/exc_total_count, 2)
        
      
-    print "log_count =", exc_log_count    
+    print "log_count =", exc_log_count  ,    exc_log_catch_ratio  
 
     temp = list()
     temp.append(exc)
@@ -127,4 +136,236 @@ for d in data1:
     print "temp", temp
     
 
+
+#===========================================================#
+#G7:
+#============================================================#
+
+ratio_details=list()
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio <=0.05 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0-0.05'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
     
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0        
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)
+    
+    
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.05  and exc_total_catch_ratio<=0.10 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0.05-0.10'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0    
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)  
+    
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.10  and exc_total_catch_ratio<=0.15 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0.10-0.15'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0    
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)
+    
+    
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.15  and exc_total_catch_ratio<=0.20 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0.15-0.20'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0    
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)
+    
+    
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.20  and exc_total_catch_ratio<=0.25 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0.20-0.25'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0    
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"   
+    print " insert", insert_str 
+    insert_cursor.execute(insert_str)          
+     
+      
+    
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.25  and exc_total_catch_ratio<=0.30 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0.25-0.30'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0    
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)
+    
+
+    
+    
+    
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.30  and exc_total_catch_ratio<=0.35 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0.30-0.35'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0    
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)
+    
+    
+    
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.35  and exc_total_catch_ratio<=0.40 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0.35-0.40'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0    
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)
+    
+    
+    
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.40  and exc_total_catch_ratio<=0.45 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0.40-0.45'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0   
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)
+    
+    
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.45  and exc_total_catch_ratio<=0.50 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '0.45-0.50'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0   
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)                     
+          
+          
+str1 = "  select count(catch_exc), sum(  exc_total_catch_ratio) ,sum(exc_log_catch_ratio)   from    "+  ratio_table  + " where  exc_total_catch_ratio >0.50 "
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    range= '> 0.50'
+    diff_exc_count= d[0]
+    sum_exc_total_catch_ratio= d[1]
+    sum_exc_log_catch_ratio =d[2]
+    
+    if diff_exc_count is None:
+        diff_exc_count = 0
+    if sum_exc_total_catch_ratio is None:
+        sum_exc_total_catch_ratio = 0.0
+    if sum_exc_log_catch_ratio is None:
+        sum_exc_log_catch_ratio = 0.0   
+    
+    insert_str= "insert  into "+ insert_table + "   values('"+range+"',"+ (str) (diff_exc_count) +","+ (str) (sum_exc_total_catch_ratio)+","+  (str)(sum_exc_log_catch_ratio)+")"    
+    insert_cursor.execute(insert_str)
+    
+db1.commit()              

@@ -516,11 +516,11 @@ print " Unique Try block = ", unique_try_blocks,  "  mix try blocks=", mix_try_b
   
   
 #=================================================================================================
-#  G7:  Making graph for 
+#  G7:  Making graph for  LOG ratio graph:  see catch_logging_ratio.py
 #=================================================================================================  
 
-ratio_details=list()
-str1 ="  select catch_exc, sum()   from "  +  ratio_table  + "  where  exc_total_catch_ratio <=0.05"
-select_cursor.execute(str1)
 
+#=================================================================================================#
+#  G8:
+#==================================================================================================#
 
