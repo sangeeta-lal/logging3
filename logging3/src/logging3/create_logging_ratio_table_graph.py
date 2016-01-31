@@ -104,10 +104,10 @@ for d in data1:
         exc_log_count = d_n[0]
         exc_non_log_count= exc_total_count - exc_log_count
         
-    exc_total_catch_ratio       = round(exc_total_count*1.0/total_catch_count, 2)
-    exc_log_catch_ratio         = round(exc_log_count*1.0/total_log_catch_count,2)
-    logging_ratio              =  round(exc_log_count*1.0/exc_total_count, 2)
-    non_logging_ratio          =  round(exc_non_log_count*1.0/exc_total_count, 2)
+    exc_total_catch_ratio       = round(exc_total_count*1.0/total_catch_count, 4)
+    exc_log_catch_ratio         = round(exc_log_count*1.0/total_log_catch_count,4)
+    logging_ratio              =  round(exc_log_count*1.0/exc_total_count, 4)
+    non_logging_ratio          =  round(exc_non_log_count*1.0/exc_total_count, 4)
        
      
     print "log_count =", exc_log_count  ,    exc_log_catch_ratio  
