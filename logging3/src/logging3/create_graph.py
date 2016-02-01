@@ -338,8 +338,8 @@ for temp_exc in unique_exc:
             neg_count =d[0]  
              
             
-        pos_ratio = ((pos_count*100)/total_count)
-        neg_ratio = ((neg_count*100)/total_count)
+        pos_ratio = ((pos_count*100.0)/total_count)
+        neg_ratio = ((neg_count*100.0)/total_count)
         
         if temp_exc!='Exception':
             temp_exc= re.sub('Exception$','',temp_exc)

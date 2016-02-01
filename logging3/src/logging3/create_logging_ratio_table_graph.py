@@ -372,3 +372,174 @@ for d in data1:
     insert_cursor.execute(insert_str)
     
 db1.commit()              
+
+
+#=========================================#
+# Plot Graphs
+#=========================================#
+
+
+#== Tomcat Graph ==#
+#"""
+plt.ylabel('ERCC')
+plt.xlabel('Range')
+plt.title('Apache Tomcat')
+
+ind = np.arange(1, 7 )   # the x locations for the groups
+sum_exc_total_catch_ratio=[0.35, 0.09,0.14, 0.0, 0.42, 0]
+sum_exc_total_catch_ratio=[35, 9, 14, 0, 42,0]
+range_list=['0-0.05', '0.05-0.10', '0.10-0.15', '0.15-0.20','0.20-0.25', '>0.25']
+labels = ['116', '1','1', '0','2','0']
+
+print ind
+width = 0.50     # the width of the bars: can also be len(x) sequence
+p1 = plt.bar(ind,  sum_exc_total_catch_ratio, width, color='yellow', align = 'center')
+
+ax = axes()
+ylim(0,65)
+plt.rcParams.update({'font.size': 25})
+#plt.rcParams.update({'figure.autolayout': True})
+plt.tight_layout()
+plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+
+rects = ax.patches
+
+# Now make some labels
+for rect, label in zip(rects, labels):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom')
+
+plt.savefig(file_path+"ercc\\tomcat_ercc.png", bbox_inches='tight')
+#plt.show()
+plt.close()
+
+#"""
+
+plt.ylabel('ERLC')
+plt.xlabel('Range')
+plt.title('Apache Tomcat')
+
+ind = np.arange(1, 7 )   # the x locations for the groups
+sum_exc_total_log_ratio=[0.3797, 0.1601, 0.1409, 0, 0.319, 0]
+sum_exc_total_log_ratio=[38, 16, 14, 0, 32, 0]
+
+p1 = plt.bar(ind,  sum_exc_total_log_ratio, width, color='blue', align = 'center')
+
+ax = axes()
+ylim(0,65)
+plt.rcParams.update({'font.size': 25})
+plt.tight_layout()
+plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+plt.savefig(file_path+"erlc\\tomcat_erlc.png", bbox_inches='tight')
+#plt.show()
+plt.close()
+
+#=======================#
+#  cloudstack 
+#========================#
+
+#"""
+#plt.ylabel('ERCC')  #  Use Tomcat
+plt.xlabel('Range')
+plt.title('CloudStack')
+
+ind = np.arange(1, 6) 
+sum_exc_total_catch_ratio=[0.4354, 0.1273, 0.1276, 0.3115, 0.0]
+sum_exc_total_catch_ratio=[43,      13,  13, 31, 0]
+labels = ['158', '2','1', '2','0']
+range_list=['0-0.05', '0.05-0.10', '0.10-0.15', '0.15-0.20','>0.20']
+
+width = 0.50     # the width of the bars: can also be len(x) sequence
+p1 = plt.bar(ind,  sum_exc_total_catch_ratio, width, color='yellow', align = 'center')
+ax = axes()
+ylim(0,65)
+plt.rcParams.update({'font.size': 25})
+plt.tight_layout()
+plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+rects = ax.patches
+
+# Now make some labels
+for rect, label in zip(rects, labels):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom')
+
+
+plt.savefig(file_path+"ercc\\cloudstack_ercc.png", bbox_inches='tight')
+#plt.show()
+plt.close()
+#"""
+
+#plt.ylabel('ERLC')  # Use Tomcat
+plt.xlabel('Range')
+plt.title('CloudStack')
+
+sum_exc_total_log_ratio=[0.6097, 0, 0.3846, 0.0068, 0.0]
+sum_exc_total_log_ratio=[61, 0, 38, 1, 0]
+
+
+p1 = plt.bar(ind,  sum_exc_total_log_ratio, width, color='blue', align = 'center')
+
+ax = axes()
+ylim(0,65)
+plt.rcParams.update({'font.size': 25})
+plt.tight_layout()
+plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+plt.savefig(file_path+"erlc\\cloudstack_erlc.png", bbox_inches='tight')
+#plt.show()
+plt.close()
+
+#=====================================#
+#  hadoop
+#=====================================#
+
+#== Tomcat Graph ==#
+#"""
+#plt.ylabel('ERCC')   # Use Tomcat
+plt.xlabel('Range')
+plt.title('Hadoop')
+
+ind = np.arange(1, 8 )   # the x locations for the groups
+sum_exc_total_catch_ratio=[0.4637, 0.0914, 0, 0.1598, 0, 0.286,0 ]
+sum_exc_total_catch_ratio=[46, 9, 0, 16, 0, 29,0]
+labels = ['262', '1','0', '1','0','1', '0']
+range_list=['0-0.05', '0.05-0.10', '0.10-0.15', '0.15-0.20','0.20-0.25', '0.25-0.30','>0.30']
+
+width = 0.5
+p1 = plt.bar(ind,  sum_exc_total_catch_ratio, width, color='yellow', align = 'center')
+ax = axes()
+ylim(0,65)
+plt.rcParams.update({'font.size': 25})
+plt.tight_layout()
+plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+rects = ax.patches
+
+# Now make some labels
+for rect, label in zip(rects, labels):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom')
+
+
+plt.savefig(file_path+"ercc\\hd_ercc.png", bbox_inches='tight')
+#plt.show()
+plt.close()
+
+
+#"""===================="""#
+plt.close()
+#plt.ylabel('ERLC')    #  Use Tomcat
+plt.xlabel('Range')
+plt.title('Hadoop')
+
+sum_exc_total_log_ratio=[0.349 , 0.0813, 0, 0.1694, 0 , 0.4013,0 ]
+sum_exc_total_log_ratio=[35, 8,0, 17, 0, 40,0]
+
+
+p1 = plt.bar(ind,  sum_exc_total_log_ratio, width, color='blue', align = 'center')
+ax = axes()
+ylim(0,65)
+plt.rcParams.update({'font.size': 25})
+#plt.rcParams.update({'figure.autolayout': True})
+plt.tight_layout()
+plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+plt.savefig(file_path+"erlc\\hd_erlc.png", bbox_inches='tight')
+#plt.show()
