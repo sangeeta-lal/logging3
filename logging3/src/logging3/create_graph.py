@@ -471,8 +471,53 @@ with open(file_path+"\\"+project+"top-20.csv", 'wb') as csvfile:
         
 
 
+
+#================================================
+# G6 : PIE Chart of 20 most popular exceptions
+#===============================================
+total_count = 0
+other_count = 0
+top_20_count = 0
+
+
+str_total =  "select count(*)   from  "+ catch_training_table 
+select_cursor.execute(str_total)
+data1 =  select_cursor.fetchall()
+for d in data1:
+    total_count = d[0]
+
+str_top_20= "select  count(*)  from  "+  catch_training_table + "  group by catch_exc  order by count(*)  desc limit 0, 20"     
+select_cursor.execute(str_top_20)
+data1 =  select_cursor.fetchall()
+for d in data1:
+    top_20_count = d[0]
+
+other_count =  total_count - top_20_count
+
+other_percent =  (other_count *1.00 /total_count)*100    
+top_20_percent =  (top_20_count *1.00 /total_count)*100    
+# make a square figure and axes
+plt.close()
+plt.figure(1, figsize=(6,6))
+ax = axes([0.1, 0.1, 0.8, 0.8])
+
+# The slices will be ordered and plotted counter-clockwise.
+labels = 'Others', 'Top-20 '
+fracs = [other_percent, top_20_percent]
+explode=(0, 0.08)
+
+cs = ['blue', 'yellow']
+plt.pie(fracs, colors = cs, explode=explode, labels=labels,
+                autopct='%1.1f%%', shadow=True, startangle=90)
+              
+plt.savefig(file_path+ "top_20_pie\\"+project+"pie.png")
+
+#plt.show()
+plt.close()
+
+
 #====================================================================================
-# G6: It is about co-existence of logged and non-logged catch blocks together
+# G7: It is about co-existence of logged and non-logged catch blocks together
 #=====================================================================================  
 
 

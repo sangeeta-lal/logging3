@@ -381,14 +381,14 @@ db1.commit()
 
 #== Tomcat Graph ==#
 #"""
-plt.ylabel('ERCC')
-plt.xlabel('Range')
+plt.ylabel('ERCC Sum')
+plt.xlabel('ERCC Range')
 plt.title('Apache Tomcat')
 
 ind = np.arange(1, 7 )   # the x locations for the groups
 sum_exc_total_catch_ratio=[0.35, 0.09,0.14, 0.0, 0.42, 0]
 sum_exc_total_catch_ratio=[35, 9, 14, 0, 42,0]
-range_list=['0-0.05', '0.05-0.10', '0.10-0.15', '0.15-0.20','0.20-0.25', '>0.25']
+range_list=['0-5', '5-10', '10-15', '15-20','20-25', '>25']
 labels = ['116', '1','1', '0','2','0']
 
 print ind
@@ -415,8 +415,8 @@ plt.close()
 
 #"""
 
-plt.ylabel('ERLC')
-plt.xlabel('Range')
+plt.ylabel('ERLC Sum')
+plt.xlabel('ERCC Range')  #  It is ERCC range not ERLC hence correct.
 plt.title('Apache Tomcat')
 
 ind = np.arange(1, 7 )   # the x locations for the groups
@@ -440,14 +440,14 @@ plt.close()
 
 #"""
 #plt.ylabel('ERCC')  #  Use Tomcat
-plt.xlabel('Range')
+plt.xlabel('ERCC Range')
 plt.title('CloudStack')
 
 ind = np.arange(1, 6) 
 sum_exc_total_catch_ratio=[0.4354, 0.1273, 0.1276, 0.3115, 0.0]
 sum_exc_total_catch_ratio=[43,      13,  13, 31, 0]
 labels = ['158', '2','1', '2','0']
-range_list=['0-0.05', '0.05-0.10', '0.10-0.15', '0.15-0.20','>0.20']
+range_list=['0-5', '5-10', '10-15', '15-20','>20']
 
 width = 0.50     # the width of the bars: can also be len(x) sequence
 p1 = plt.bar(ind,  sum_exc_total_catch_ratio, width, color='yellow', align = 'center')
@@ -470,7 +470,7 @@ plt.close()
 #"""
 
 #plt.ylabel('ERLC')  # Use Tomcat
-plt.xlabel('Range')
+plt.xlabel('ERCC Range')
 plt.title('CloudStack')
 
 sum_exc_total_log_ratio=[0.6097, 0, 0.3846, 0.0068, 0.0]
@@ -495,14 +495,14 @@ plt.close()
 #== Tomcat Graph ==#
 #"""
 #plt.ylabel('ERCC')   # Use Tomcat
-plt.xlabel('Range')
+plt.xlabel('ERCC Range')
 plt.title('Hadoop')
 
 ind = np.arange(1, 8 )   # the x locations for the groups
 sum_exc_total_catch_ratio=[0.4637, 0.0914, 0, 0.1598, 0, 0.286,0 ]
 sum_exc_total_catch_ratio=[46, 9, 0, 16, 0, 29,0]
 labels = ['262', '1','0', '1','0','1', '0']
-range_list=['0-0.05', '0.05-0.10', '0.10-0.15', '0.15-0.20','0.20-0.25', '0.25-0.30','>0.30']
+range_list=['0-5', '5-10', '10-15', '15-20','20-25', '25-30','>30']
 
 width = 0.5
 p1 = plt.bar(ind,  sum_exc_total_catch_ratio, width, color='yellow', align = 'center')
@@ -527,7 +527,7 @@ plt.close()
 #"""===================="""#
 plt.close()
 #plt.ylabel('ERLC')    #  Use Tomcat
-plt.xlabel('Range')
+plt.xlabel('ERCC Range')
 plt.title('Hadoop')
 
 sum_exc_total_log_ratio=[0.349 , 0.0813, 0, 0.1694, 0 , 0.4013,0 ]
