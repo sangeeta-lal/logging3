@@ -475,27 +475,28 @@ with open(file_path+"\\"+project+"top-20.csv", 'wb') as csvfile:
 #================================================
 # G6 : PIE Chart of 20 most popular exceptions
 #===============================================
-total_count = 0
-other_count = 0
-top_20_count = 0
+total_count = 0.0
+other_count = 0.0
+top_20_count = 0.0
 
 
 str_total =  "select count(*)   from  "+ catch_training_table 
 select_cursor.execute(str_total)
 data1 =  select_cursor.fetchall()
 for d in data1:
-    total_count = d[0]
+    total_count = (float)(d[0])
 
 str_top_20= "select  sum(exc_total_count)  from  "+ ratio_table + "    order by exc_total_count desc limit 0, 20"     
 select_cursor.execute(str_top_20)
 data1 =  select_cursor.fetchall()
 for d in data1:
-    top_20_count = d[0]
+    top_20_count =(float)( d[0])
 
 other_count =  total_count - top_20_count
 
-other_percent =  ((other_count*1.0 )/total_count)*100    
-top_20_percent = ( (top_20_count*1.0)/total_count)*100    
+print other_count, total_count, top_20_count
+other_percent =  ((other_count*100.0 )/total_count)
+top_20_percent = ( (top_20_count*100.0)/total_count)  
 # make a square figure and axes
 plt.close()
 plt.figure(1, figsize=(6,6))
