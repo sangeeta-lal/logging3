@@ -486,7 +486,7 @@ data1 =  select_cursor.fetchall()
 for d in data1:
     total_count = d[0]
 
-str_top_20= "select  count(*)  from  "+  catch_training_table + "  group by catch_exc  order by count(*)  desc limit 0, 20"     
+str_top_20= "select  sum(exc_total_count)  from  "+ ratio_table + "    order by exc_total_count desc limit 0, 20"     
 select_cursor.execute(str_top_20)
 data1 =  select_cursor.fetchall()
 for d in data1:
@@ -494,8 +494,8 @@ for d in data1:
 
 other_count =  total_count - top_20_count
 
-other_percent =  (other_count *1.00 /total_count)*100    
-top_20_percent =  (top_20_count *1.00 /total_count)*100    
+other_percent =  ((other_count*1.0 )/total_count)*100    
+top_20_percent = ( (top_20_count*1.0)/total_count)*100    
 # make a square figure and axes
 plt.close()
 plt.figure(1, figsize=(6,6))
