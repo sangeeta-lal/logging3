@@ -486,7 +486,7 @@ data1 =  select_cursor.fetchall()
 for d in data1:
     total_count = (float)(d[0])
 
-str_top_20= "select  sum(exc_total_count)  from  "+ ratio_table + "    order by exc_total_count desc limit 0, 20"     
+str_top_20= "select sum(exc_total_count)  from ( select exc_total_count  from "+ ratio_table+ "    order by exc_total_count desc limit 0, 20) as  temp_table"     
 select_cursor.execute(str_top_20)
 data1 =  select_cursor.fetchall()
 for d in data1:
