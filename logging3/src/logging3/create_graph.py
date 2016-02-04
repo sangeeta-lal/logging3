@@ -699,7 +699,11 @@ print logging_ratio
 print "logging_ratio_count=0"
 #========================================#    
 #=== create hostogram fo the same========# 
-plt.ylabel('% of Exception Types')
+if project=='tomcat_':
+    plt.ylabel('% of Exception Types')
+else:
+    plt.ylabel('')    
+
 plt.xlabel('Logging Ratio')
 plt.title(title)
 
