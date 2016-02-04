@@ -593,7 +593,7 @@ for d in data1:
 print  total_exc_types
 
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0  and logging_ratio<0.10 "
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -602,7 +602,7 @@ for d in data1:
     logging_ratio_count.append(d[0])
 
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.10  and logging_ratio<0.20 "
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -611,7 +611,7 @@ for d in data1:
     logging_ratio_count.append(d[0])
 
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.20  and logging_ratio<0.30 "
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -620,7 +620,7 @@ for d in data1:
     logging_ratio_count.append(d[0])
 
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.30  and logging_ratio<0.40 "
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -629,7 +629,7 @@ for d in data1:
     logging_ratio_count.append(d[0])
 
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.40  and logging_ratio<0.50 "
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -638,7 +638,7 @@ for d in data1:
     logging_ratio_count.append(d[0])
 
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.50  and logging_ratio<0.60 "
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -648,7 +648,7 @@ for d in data1:
  
 
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.60  and logging_ratio<0.70 "
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -657,7 +657,7 @@ for d in data1:
     logging_ratio_count.append(d[0])
 
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.70  and logging_ratio<0.80 "
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -666,7 +666,7 @@ for d in data1:
     logging_ratio_count.append(d[0])
 
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.80  and logging_ratio<0.90 "
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -675,7 +675,7 @@ for d in data1:
     logging_ratio_count.append(d[0])
     
 str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.90"
-print "str1 = ", str1
+#print "str1 = ", str1
 select_cursor.execute(str1)
 data1= select_cursor.fetchall()
 for d in data1:
@@ -726,7 +726,7 @@ for rect, label in zip(rects, logging_ratio_count):
     height = rect.get_height()
     ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom') 
 
-plt.savefig(file_path+"logging_ratio\\"+project+"tomcat_logging_ratio.png", bbox_inches='tight')
+plt.savefig(file_path+"logging_ratio\\"+project+"logging_ratio.png", bbox_inches='tight')
 plt.show()
 plt.close()
 
