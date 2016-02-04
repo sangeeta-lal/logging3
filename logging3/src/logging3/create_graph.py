@@ -726,7 +726,7 @@ for rect, label in zip(rects, logging_ratio_count):
     height = rect.get_height()
     ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom') 
 
-plt.savefig(file_path+"logging_ratio\\tomcat_logging_ratio.png", bbox_inches='tight')
+plt.savefig(file_path+"logging_ratio\\"+project+"tomcat_logging_ratio.png", bbox_inches='tight')
 plt.show()
 plt.close()
 
