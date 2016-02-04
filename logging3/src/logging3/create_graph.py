@@ -299,14 +299,14 @@ exc_pos_ratio_above_threshold =list()
 exc_neg_ratio_above_threshold =list()
 
 g4_str = "select distinct catch_exc  from "+ catch_training_table  
-print " g4_str=",g4_str
+#print " g4_str=",g4_str
 select_cursor.execute(g4_str)
 g4_db = select_cursor.fetchall()
 unique_exc=list()
 for d in g4_db:
     unique_exc.append(d[0])
 
-print "len=", size(unique_exc)    
+#print "len=", size(unique_exc)    
 for temp_exc in unique_exc:
     #print temp_exc           
     exc_str = " select count(*)   from " + catch_training_table + " where catch_exc = '"+temp_exc+"'"
@@ -562,11 +562,172 @@ print " Unique Try block = ", unique_try_blocks,  "  mix try blocks=", mix_try_b
   
   
 #=================================================================================================
-#  G7:  Making graph for  LOG ratio graph:  see catch_logging_ratio.py
+#  G7: ERCC nad ERLC graph are present in this file. ==> create_logging_ratio_table_graph.py
 #=================================================================================================  
 
 
 #=================================================================================================#
-#  G8:
+#  G8: Logging ratio distribution
 #==================================================================================================#
+total_exc_types=0.0
+between_0_10_p=0.0
+between_10_20_p=0.0
+between_20_30_p=0.0
+between_30_10_p=0.0
+between_40_10_p=0.0
+between_50_10_p=0.0
+between_60_10_p=0.0
+between_70_10_p=0.0
+between_80_10_p=0.0
+between_90_10_p=0.0
 
+
+logging_ratio= list()
+logging_ratio_count = list()
+
+str1= "select count(*)  from (select   distinct catch_exc   from  " +   catch_training_table  +"  ) as abb  "
+select_cursor.execute(str1)
+data1=select_cursor.fetchall()
+for d in data1:
+    total_exc_types=d[0]*1.0  #  comvert to float
+print  total_exc_types
+
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0  and logging_ratio<0.10 "
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_0_10_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.10  and logging_ratio<0.20 "
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_10_20_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.20  and logging_ratio<0.30 "
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_20_30_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.30  and logging_ratio<0.40 "
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_30_40_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.40  and logging_ratio<0.50 "
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_40_50_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.50  and logging_ratio<0.60 "
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_50_60_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+ 
+
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.60  and logging_ratio<0.70 "
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_60_70_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.70  and logging_ratio<0.80 "
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_70_80_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.80  and logging_ratio<0.90 "
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_80_90_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+    
+str1 = " select  count(*)  from "  + ratio_table +"  where logging_ratio >=0.90"
+print "str1 = ", str1
+select_cursor.execute(str1)
+data1= select_cursor.fetchall()
+for d in data1:
+    temp= (d[0]*1.0)
+    between_90_100_p=round(temp/total_exc_types,2)*100
+    logging_ratio_count.append(d[0])
+
+
+logging_ratio.append((int)( between_0_10_p))
+logging_ratio.append((int)(  between_10_20_p))
+logging_ratio.append((int)(  between_20_30_p))
+logging_ratio.append((int)(  between_30_40_p))
+logging_ratio.append((int)( between_40_50_p))
+logging_ratio.append((int)(  between_50_60_p))
+logging_ratio.append((int)(  between_60_70_p))
+logging_ratio.append((int)(  between_70_80_p))
+logging_ratio.append((int)(  between_80_90_p))
+logging_ratio.append((int)(  between_90_100_p))
+
+print logging_ratio
+print "logging_ratio_count=0"
+#========================================#    
+#=== create hostogram fo the same========# 
+plt.ylabel('% of Exception Types')
+plt.xlabel('Logging Ratio')
+plt.title(title)
+
+ind = np.arange(1, 11 )   # the x locations for the groups
+range_list=['<10', '10-20', '20-30', '30-40','40-50', '50-60', '60-70', '70-80', '80-90', '>=90']
+
+
+
+width = 0.50     # the width of the bars: can also be len(x) sequence
+p1 = plt.bar(ind,  logging_ratio, width, color='yellow', align = 'center')
+
+ax = axes()
+ylim(0,100)
+plt.rcParams.update({'font.size': 20})
+#plt.rcParams.update({'figure.autolayout': True})
+plt.tight_layout()
+plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+
+rects = ax.patches
+
+# Now make some labels
+#"""
+for rect, label in zip(rects, logging_ratio_count):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom') 
+
+plt.savefig(file_path+"logging_ratio\\tomcat_logging_ratio.png", bbox_inches='tight')
+plt.show()
+plt.close()
+
+#"""
