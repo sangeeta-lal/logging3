@@ -63,7 +63,7 @@ def build_and_print_LDA(docs_tokens, no_of_topics, no_of_words):
     #print " dict",  dictionary, corpus
     #model =  lda.LDA(n_topics =20, n_iter = 1500, random_state=1)
     #model.fit(corpus)
-    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=500)
+    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=no_of_topics, id2word = dictionary, passes=1500)
     
     data = ldamodel.print_topics(num_topics=no_of_topics, num_words=no_of_words)
      
@@ -107,7 +107,8 @@ try_con_doc_tokens = create_lda_corpus(docs_tokens, 1)
 build_and_print_LDA(docs_tokens, no_of_topics, no_of_words) 
 
 ##===== Logged catch block=============##
-print " Topics from Try-Block of Logged Catch Blocks:"
+print "\n\n"
+print " Topics from Try-Block of Non Logged Catch Blocks:"
 print  "=============================================="
 docs_tokens= list()
 try_con_doc_tokens = create_lda_corpus(docs_tokens, 0)        
