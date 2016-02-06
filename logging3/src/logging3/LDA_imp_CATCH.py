@@ -55,7 +55,7 @@ file_path="E:\\Sangeeta\\Research\\Logging3\\result\\"
 db1= MySQLdb.connect(host="localhost",user=user, passwd=password, db=database, port=port)
 select_cursor = db1.cursor()
 
-def build_and_print_LDA(docs_tokens):
+def build_and_print_LDA(docs_tokens, no_of_topics, no_of_words):
        
     dictionary = gensim.corpora.Dictionary(docs_tokens)    
     corpus = [dictionary.doc2bow(doc_tokens) for doc_tokens in docs_tokens]
@@ -65,7 +65,7 @@ def build_and_print_LDA(docs_tokens):
     #model.fit(corpus)
     ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=500)
     
-    data = ldamodel.print_topics(num_topics=20, num_words=10)
+    data = ldamodel.print_topics(num_topics=no_of_topics, num_words=no_of_words)
      
     i=0
     for d in data:
@@ -94,14 +94,24 @@ def  create_lda_corpus(try_con_doc_tokens, is_catch_logged):
     return docs_tokens    
 
 
+#==============================================#
+#==============================================#
+no_of_topics = 20
+no_of_words = 10
 docs_tokens= list()
+
+##===== Logged catch block=============##
+print " Topics from Try-Block of Logged Catch Blocks:"
+print  "==========================================="
 try_con_doc_tokens = create_lda_corpus(docs_tokens, 1)        
-build_and_print_LDA(docs_tokens) 
+build_and_print_LDA(docs_tokens, no_of_topics, no_of_words) 
 
-
+##===== Logged catch block=============##
+print " Topics from Try-Block of Logged Catch Blocks:"
+print  "=============================================="
 docs_tokens= list()
 try_con_doc_tokens = create_lda_corpus(docs_tokens, 0)        
-build_and_print_LDA(docs_tokens)      
+build_and_print_LDA(docs_tokens, no_of_topics, no_of_words)      
 
 
 
