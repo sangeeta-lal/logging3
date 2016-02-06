@@ -16,6 +16,7 @@ import clean_fun
 #==================================================================#
 
 
+
 #Project
 #"""
 project= "tomcat_"
@@ -29,9 +30,9 @@ title = 'CloudStack'
 """
 project =  "hd_"
 title = 'Hadoop'
-#""
-
 #"""
+
+"""
 port=3306
 user="root"
 password="1234"
@@ -40,7 +41,6 @@ catch_training_table = project+"catch_training3"
 ratio_table= project+"catch_logging_ratio"
 file_path="F:\\Research\\Logging3\\result\\"
 """
-
 port=3307
 user="sangeetal"
 password="sangeetal"
