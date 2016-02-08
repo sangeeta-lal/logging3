@@ -1,5 +1,7 @@
 
 import re
+from nltk.stem.porter import PorterStemmer
+from nltk.corpus import  stopwords
 
 #===================================================================#
 #USES: Thi file consists of various function useful in file cleaning
@@ -30,3 +32,9 @@ def stem_it(val):
     temp = " ".join(PorterStemmer().stem_word(word) for word in val.split(" "))
     #print "temp=", temp
     return temp
+
+
+def  remove_stop_words(text):
+    stop_list = stopwords.words('english')
+    text = ' '.join([word for word in text.split() if word not in stop_list])
+    return text
