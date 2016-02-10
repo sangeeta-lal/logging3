@@ -81,7 +81,7 @@ def build_lda_model(final_dictionary, docs_tokens):
         
      
 def  create_document_tokens( is_catch_logged):
-    str1 = "select try_con from " +  catch_training_table  +  "    where is_catch_logged="+ (str)(is_catch_logged)
+    str1 = "select catch_con from " +  catch_training_table  +  "    where is_catch_logged="+ (str)(is_catch_logged)
     select_cursor.execute(str1)
     data1= select_cursor.fetchall()      
    # data1= ['I amSangeeta', 'Hello i', 'i am san', ' this teaching nl i', 'this nl teach i', 'i nl teac', 'i the sangeeta', 'i the see', 'i the rem', 'i pl', 'see', 'i jjk', 'i jjjj', ' i hhhh']
@@ -119,16 +119,15 @@ def write_in_file(lda_results, file_handle, no_of_topics, no_of_words, lda_itera
          file_handle.write("Topic "+ (str)(i)+ "="+(str)(d)+"\n")
          i=i+1  
 
-
     
 #==============================================#
 #=== Main=====#
 #==============================================#
-no_of_topics = 20
+no_of_topics = 10
 no_of_words = 10
 no_lda_iterations = 10
-try_con_logged_doc_tokens  = list()
-try_con_non_logged_doc_tokens = list()
+catch_con_logged_doc_tokens  = list()
+catch_con_non_logged_doc_tokens = list()
 all_tokens_list = list()
 #=====Filter words=============================#
 #  filter words which occur in less than equal to 2% or geater than 80% of the docs
@@ -141,11 +140,11 @@ above_lim_val=0.80
 
 
 #== Create corpus using both logged and non-logged catch blocks
-try_con_logged_doc_tokens = create_document_tokens( 1)        
-try_con_non_logged_doc_tokens = create_document_tokens(0)   
+catch_con_logged_doc_tokens = create_document_tokens( 1)        
+catch_con_non_logged_doc_tokens = create_document_tokens(0)   
 
-all_tokens_list = try_con_logged_doc_tokens  + try_con_non_logged_doc_tokens
-print " logged doc len = ", len(try_con_logged_doc_tokens), " non logged  doc len = ", len(try_con_non_logged_doc_tokens),  "Total len = ", len(all_tokens_list)
+all_tokens_list = catch_con_logged_doc_tokens  + catch_con_non_logged_doc_tokens
+print " logged doc len = ", len(catch_con_logged_doc_tokens), " non logged  doc len = ", len(catch_con_non_logged_doc_tokens),  "Total len = ", len(all_tokens_list)
 
 #== Compute frequency of lower limit of documents for data preprocessing===#
 low_lim_val= (len(all_tokens_list)*low_lim)/100.0
@@ -154,28 +153,28 @@ final_dictionary = build_dictionary(all_tokens_list, low_lim_val, above_lim_val)
 
 
 
-print " Topics from Try-Block of Logged Catch Blocks:"
+print " Topics from catch-Block of Logged Catch Blocks:"
 print  "==========================================="
 
-logged_file_path = file_path+"lda\\" +project + "lda_"+(str)(no_of_topics)+"_"+(str)(no_of_words)+"try_logged.txt"
-logged_plot_path = file_path+"lda\\" +project + "lda_"+(str)(no_of_topics)+"_"+(str)(no_of_words)+"try_logged.png"
+logged_file_path = file_path+"lda\\" +project + "lda_"+(str)(no_of_topics)+"_"+(str)(no_of_words)+"catch_logged.txt"
+logged_plot_path = file_path+"lda\\" +project + "lda_"+(str)(no_of_topics)+"_"+(str)(no_of_words)+"catch_logged.png"
 
 file_handle =  open(logged_file_path, 'w')
 
-lda_result = build_lda_model(final_dictionary, try_con_logged_doc_tokens)
+lda_result = build_lda_model(final_dictionary, catch_con_logged_doc_tokens)
 write_in_file(lda_result, file_handle, no_of_topics, no_of_words, no_lda_iterations)
 util3.plot_heat_map(lda_result, no_of_topics, logged_plot_path)
 file_handle.close()
 
 
 
-print " Topics from Try-Block of non Logged Catch Blocks:"
+print " Topics from catch-Block of non Logged Catch Blocks:"
 print  "==========================================="
-non_logged_file_path = file_path+"lda\\" +project + "lda_"+(str)(no_of_topics)+"_"+(str)(no_of_words)+"try_non_logged.txt"
-non_logged_plot_path = file_path+"lda\\" +project + "lda_"+(str)(no_of_topics)+"_"+(str)(no_of_words)+"try_non_logged.png"
+non_logged_file_path = file_path+"lda\\" +project + "lda_"+(str)(no_of_topics)+"_"+(str)(no_of_words)+"catch_non_logged.txt"
+non_logged_plot_path = file_path+"lda\\" +project + "lda_"+(str)(no_of_topics)+"_"+(str)(no_of_words)+"catch_non_logged.png"
 
 file_handle =  open(non_logged_file_path, 'w')     
-lda_result =build_lda_model(final_dictionary, try_con_non_logged_doc_tokens)
+lda_result =build_lda_model(final_dictionary, catch_con_non_logged_doc_tokens)
 write_in_file(lda_result, file_handle, no_of_topics, no_of_words, no_lda_iterations)
 util3.plot_heat_map(lda_result, no_of_topics, non_logged_plot_path)
 file_handle.close()
