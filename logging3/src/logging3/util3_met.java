@@ -279,6 +279,7 @@ public class util3_met
 		      
 			}
 
+			/*PAT:   logErrorMessage(logFile,e);*/
 			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logError\\()");
 			matcher = pat.matcher(string_content);
 			while(matcher.find())

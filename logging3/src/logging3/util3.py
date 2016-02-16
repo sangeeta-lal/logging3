@@ -93,6 +93,7 @@ def  plot_heat_map(lda_result, no_of_topics, plot_save_path):
     ax.set_xticks(np.arange(topic_term_prob_matrix.shape[1])+0.5, minor=False)
     ax.set_yticks(np.arange(topic_term_prob_matrix.shape[0])+0.5, minor=False)
     
+    
     # want a more natural, table-like display
     ax.invert_yaxis()
     ax.xaxis.tick_top()
@@ -100,5 +101,7 @@ def  plot_heat_map(lda_result, no_of_topics, plot_save_path):
     ax.set_xticklabels(column_labels, minor=False)
     ax.set_yticklabels(row_labels, minor=False)
     plt.savefig(plot_save_path)
+   
     #plt.show()
+    plt.close()
     

@@ -164,8 +164,9 @@ file_handle =  open(logged_file_path, 'w')
 
 lda_result = build_lda_model(final_dictionary, try_con_logged_doc_tokens)
 write_in_file(lda_result, file_handle, no_of_topics, no_of_words, no_lda_iterations)
-util3.plot_heat_map(lda_result, no_of_topics, logged_plot_path)
 file_handle.close()
+util3.plot_heat_map(lda_result, no_of_topics, logged_plot_path)
+
 
 
 
@@ -177,12 +178,10 @@ non_logged_plot_path = file_path+"lda\\" +project + "lda_"+(str)(no_of_topics)+"
 file_handle =  open(non_logged_file_path, 'w')     
 lda_result =build_lda_model(final_dictionary, try_con_non_logged_doc_tokens)
 write_in_file(lda_result, file_handle, no_of_topics, no_of_words, no_lda_iterations)
-util3.plot_heat_map(lda_result, no_of_topics, non_logged_plot_path)
 file_handle.close()
+util3.plot_heat_map(lda_result, no_of_topics, non_logged_plot_path)
 
-
-
-    
+   
 
 
 """"
