@@ -125,7 +125,7 @@ def write_in_file(lda_results, file_handle, no_of_topics, no_of_words, lda_itera
 #==============================================#
 no_of_topics = 10
 no_of_words = 10
-no_lda_iterations = 10
+no_lda_iterations = 10000
 catch_con_logged_doc_tokens  = list()
 catch_con_non_logged_doc_tokens = list()
 all_tokens_list = list()
