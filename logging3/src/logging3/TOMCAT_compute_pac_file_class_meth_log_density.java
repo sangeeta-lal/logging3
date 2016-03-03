@@ -46,6 +46,7 @@ public class TOMCAT_compute_pac_file_class_meth_log_density
 	String rawContent = "";
 	String log_levels_combined = "";
 	int file_LOC = 0;
+	int file_SLOC  = 0 ;
 	///*
 	 String url = "jdbc:mysql://localhost:3306/";
 	 String driver = "com.mysql.jdbc.Driver";
@@ -134,31 +135,47 @@ public class TOMCAT_compute_pac_file_class_meth_log_density
  public void file_log_lines(String file_name)
  	{
 	// System.out.println("  in func log lines");
-	 util3_met u3m= new util3_met();
+	// file_name = "F:/Research/Logging3/dataset/tomcat-8.0.9/java/org/apache/juli/logging/Log.java" ;
+	// file_name ="F:\\Research\\Logging3\\dataset\\tomcat-8.0.9\\java\\javax\\servlet\\jsp\\tagext\\BodyTag.java";
+   //file_name = "F:\\Research\\Logging3\\dataset\\tomcat-8.0.9\\java\\org\\apache\\juli\\logging\\DirectJDKLog.java";
+	 
+	 util3_met u3m= new util3_met(); 
 	 log_level_interface l = new log_level_interface();
+	 Remove_Comments  rc =  new Remove_Comments();
+	 
  		try
  		{
- 			//file_name= "F:\\Research\\Logging3\\dataset\\tomcat-8.0.9\\webapps\\examples\\WEB-INF\\classes\\websocket\\snake\\SnakeTimer.java";
- 			BufferedReader reader = new BufferedReader(new FileReader(file_name));
  			
  			file_LOC=0;
- 			String line_val ="";
- 			while ((line_val=reader.readLine()) != null) 
- 			{
- 				if(u3m.is_blank_line(line_val)!=true)
- 				  {
- 					 		
- 						  {file_LOC++;}
- 				  }
- 			}
- 			reader.close(); 	
+ 			file_SLOC = 0;
+ 			int file_final_sloc = 0;
  			
- 			String file_content_as_string = readFileToString(file_name);
- 		
-			l=  u3m.find_and_set_logging_level(file_content_as_string, l);
+ 			file_LOC  = u3m.find_file_LOC(file_name); 	
+ 			String file_content_as_string = readFileToString(file_name);	
+ 			String file_content_without_comment =  rc.remove_comments(file_content_as_string);
+ 			 				 
+ 			l=  u3m.find_and_set_logging_level(file_content_without_comment, l);
 			
- 			//System.out.println(" file name="+ file_name+ " loc = "+ file_LOC+ " logged="+l.logged);
- 			insert_to_db(file_name, file_LOC, l.logged);
+ 			
+ 			/*l.log_count = 2;
+			l.log_levels_combined = "fd";
+			l.logged=1;
+ 			file_SLOC=u3m.find_file_SLOC(file_content_as_string);*/
+ 			
+ 			
+ 			/***New code***/
+ 			
+ 			//	file_content_as_string  =  file_content_as_string.replaceAll("(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(//.*)", "\n");
+ 			//  Link: Removing java comments: http://blog.ostermiller.org/find-comment
+ 			//	file_content_as_string  =  file_content_as_string.replaceAll("(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(//.*)", "\n");
+ 			file_final_sloc= u3m.find_final_file_SLOC(file_content_without_comment);
+ 			/*************/
+ 			
+ 			
+ 			file_name=  file_name.replace("\\", "\\\\");
+ 	     	System.out.println(" file name="+ file_name+ " loc = "+ file_LOC+ " logged="+l.logged+  "new loc"+ file_final_sloc);
+ 			
+ 			insert_to_db(file_name, file_LOC, l.logged, l.log_count, l.log_levels_combined, file_SLOC, file_final_sloc);
  		}catch(Exception e){
  			
  			 e.printStackTrace();
@@ -167,10 +184,9 @@ public class TOMCAT_compute_pac_file_class_meth_log_density
  	}
 	 
 
-
-private void insert_to_db(String file_name, int file_LOC2, int logged)
+private void insert_to_db(String file_name, int file_LOC2, int logged, int log_count,  String log_levels, int file_SLOC, int file_final_sloc)
 {
-	String insert_str = "insert into "+ insert_table + " values( '"+ file_name+"',"+ file_LOC2 +","+ logged+")";
+	String insert_str = "insert into "+ insert_table + " values( '"+ file_name+"',"+ file_LOC2 +","+ logged+","+ log_count+",'"+log_levels+"',"+ file_SLOC+","+ file_final_sloc +")";
 	
 	Statement stmt =null;
 	try 

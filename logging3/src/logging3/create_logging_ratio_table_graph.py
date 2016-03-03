@@ -422,6 +422,7 @@ plt.title('Apache Tomcat')
 ind = np.arange(1, 7 )   # the x locations for the groups
 sum_exc_total_log_ratio=[0.3797, 0.1601, 0.1409, 0, 0.319, 0]
 sum_exc_total_log_ratio=[38, 16, 14, 0, 32, 0]
+labels = ['116', '1','1', '0','2','0']
 
 p1 = plt.bar(ind,  sum_exc_total_log_ratio, width, color='blue', align = 'center')
 
@@ -430,6 +431,16 @@ ylim(0,65)
 plt.rcParams.update({'font.size': 25})
 plt.tight_layout()
 plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+
+#====New code====================================================##
+rects = ax.patches
+
+# Now make some labels
+for rect, label in zip(rects, labels):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom')
+#===========================================================================================#
+
 plt.savefig(file_path+"erlc\\tomcat_erlc.png", bbox_inches='tight')
 #plt.show()
 plt.close()
@@ -452,7 +463,7 @@ range_list=['0-5', '5-10', '10-15', '15-20','>20']
 width = 0.50     # the width of the bars: can also be len(x) sequence
 p1 = plt.bar(ind,  sum_exc_total_catch_ratio, width, color='yellow', align = 'center')
 ax = axes()
-ylim(0,65)
+ylim(0,70)
 plt.rcParams.update({'font.size': 25})
 plt.tight_layout()
 plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
@@ -475,15 +486,25 @@ plt.title('CloudStack')
 
 sum_exc_total_log_ratio=[0.6097, 0, 0.3846, 0.0068, 0.0]
 sum_exc_total_log_ratio=[61, 0, 38, 1, 0]
+labels = ['158', '2','1', '2','0']
 
 
 p1 = plt.bar(ind,  sum_exc_total_log_ratio, width, color='blue', align = 'center')
 
 ax = axes()
-ylim(0,65)
+ylim(0,70)
 plt.rcParams.update({'font.size': 25})
 plt.tight_layout()
 plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+#====New code====================================================##
+rects = ax.patches
+# Now make some labels
+for rect, label in zip(rects, labels):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom')
+#===========================================================================================#
+
+
 plt.savefig(file_path+"erlc\\cloudstack_erlc.png", bbox_inches='tight')
 #plt.show()
 plt.close()
@@ -532,7 +553,7 @@ plt.title('Hadoop')
 
 sum_exc_total_log_ratio=[0.349 , 0.0813, 0, 0.1694, 0 , 0.4013,0 ]
 sum_exc_total_log_ratio=[35, 8,0, 17, 0, 40,0]
-
+labels = ['262', '1','0', '1','0','1', '0']
 
 p1 = plt.bar(ind,  sum_exc_total_log_ratio, width, color='blue', align = 'center')
 ax = axes()
@@ -541,5 +562,14 @@ plt.rcParams.update({'font.size': 25})
 #plt.rcParams.update({'figure.autolayout': True})
 plt.tight_layout()
 plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
+
+#====New code====================================================##
+rects = ax.patches
+# Now make some labels
+for rect, label in zip(rects, labels):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom')
+#===========================================================================================#
+
 plt.savefig(file_path+"erlc\\hd_erlc.png", bbox_inches='tight')
 #plt.show()

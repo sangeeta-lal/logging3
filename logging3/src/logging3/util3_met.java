@@ -1,6 +1,7 @@
 package logging3;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -521,8 +522,7 @@ public class util3_met
 			try 
 			 {
 			  // br.readLine();
-			 }catch(Exception e)
-			{}
+			 
 			
 			//System.out.println("Helljkjklj");
 			String  substring_part[]  =  substring.split(",");
@@ -535,6 +535,11 @@ public class util3_met
 			}
 			
 			System.out.println("level = "+ level);
+			
+			 }catch(Exception e)
+			{ 
+				e.printStackTrace();
+			}
 		//	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			try 
 			 {
@@ -961,20 +966,9 @@ public String get_modified_con_for_method_cal_extraction( String method_content,
 	return new_string;
 }
 
-// This function read each line of the file and finds out whether it is an import statement or not
-public boolean is_import_statement(String line_val)
-{
 
-	Pattern pat = Pattern.compile("(import( )+[A-Za-z.]+;)");
-	Matcher matcher = pat.matcher(line_val);
-	
-	while(matcher.find())
-	{
-		return true;
-	}
-	return false;
-}
 
+// This function checks for blank lines in source-code
 public boolean is_blank_line(String line_val)
 {
 	
@@ -986,6 +980,161 @@ public boolean is_blank_line(String line_val)
 
  return false;
 }
+
+// This function checks whether a line contains only brace  "{" or "}"
+public boolean is_brace_only(String line_val)
+{
+	
+	
+	if((line_val.trim().equalsIgnoreCase("{")) || (line_val.trim().equalsIgnoreCase("}")))
+	{
+		return true;
+	}
+
+ return false;
+}
+
+//This function checks for the  package or import statements
+public boolean is_import_or_package_stmt(String line_val)
+{
+	
+	
+	if((line_val.trim().matches("import[ ]+(.*);")) || (line_val.trim().matches("package[ ]+(.*);")))
+	{
+		return true;
+	}
+
+ return false;
+}
+
+
+// This function LOC of a given file
+public int find_file_LOC(String file_name)
+{
+
+	int file_LOC = 0;
+	try
+	  {
+	    //file_name= "F:\\Research\\Logging3\\dataset\\tomcat-8.0.9\\webapps\\examples\\WEB-INF\\classes\\websocket\\snake\\SnakeTimer.java";
+	      BufferedReader reader = new BufferedReader(new FileReader(file_name));
+	      String line_val ="";
+		  while ((line_val=reader.readLine()) != null) 
+		   {
+			  if(is_blank_line(line_val)!=true)
+			     {
+				 		
+					  {file_LOC++;}
+			     }
+		    }
+		  reader.close(); 	
+		
+      }catch(Exception e)
+	    {
+		 
+	      e.printStackTrace();
+         }
+	
+	return  file_LOC;
+}
+
+
+//This function SLOC of a given file and hence removes comments from the code
+public int find_file_SLOC(String file_content_as_string)
+{
+
+	int file_SLOC = 0;
+	int  have_comment = 0;
+	try
+	  {
+	    //file_name= "F:\\Research\\Logging3\\dataset\\tomcat-8.0.9\\webapps\\examples\\WEB-INF\\classes\\websocket\\snake\\SnakeTimer.java";
+	      //BufferedReader reader = new BufferedReader(new FileReader(file_name));
+	      
+		String file_lines[] =  file_content_as_string.split("\n");
+		int length = file_lines.length;
+		
+		for(int i=0;i<length;i++) 
+		{
+	         String line_val ="";
+	         line_val= file_lines[i];
+		     line_val = line_val.trim();
+			    
+		      if(is_blank_line(line_val)!=true)
+			         {
+				 		
+					  if(line_val.startsWith("//"))
+					  {
+						  
+						// have_comment =1;
+						 // break;
+					   }
+						 
+					  else if(line_val.startsWith("/*"))
+					  {
+						  boolean multiline_comment = true;
+						  while(multiline_comment)
+						  {
+							  if(line_val.endsWith("*/"))
+							  {
+								  multiline_comment  = false;
+							  }
+							  
+							  else
+							  {
+								
+							    i++;
+								line_val  =  file_lines[i];
+								line_val  = line_val.trim();
+							  }
+						   }//while
+						 }
+					  else
+					  {
+						  file_SLOC++;
+					  }
+			     }
+			     
+		    }//for
+		   	
+		
+       }catch(Exception e)
+	    {
+		 
+	      e.printStackTrace();
+        }
+	
+	return  file_SLOC;
+}
+
+
+// This is the final method for computing sloc of a given file
+// This function removes comments, packages, blank lines and lines containing braces only
+public int find_final_file_SLOC(String file_content_as_string)
+{
+   Remove_Comments rc =  new Remove_Comments();
+   	
+	String content_without_comment  =  rc.remove_comments(file_content_as_string);	
+	String content_lines [] =  content_without_comment.split("\n");
+	int length = content_lines.length;
+	
+	int final_file_sloc = 0;
+	for(int i=0; i<length;i++)
+	{
+		String line_val ="";
+        line_val= content_lines[i];
+	    line_val = line_val.trim();
+		    
+	      if((is_blank_line(line_val)!=true)&&(is_import_or_package_stmt(line_val)!=true)&&(is_brace_only(line_val)!=true))
+	      {
+	    	  final_file_sloc++;
+	    	  
+	      }   //if blank
+			 		
+				 
+	}// for loop
+	
+	return final_file_sloc;
+}
+
 
 
 }//class
