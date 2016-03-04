@@ -109,14 +109,16 @@ public class cloudstack_compute_pac_file_class_meth_log_density
  		try {
  			BufferedReader br =  new BufferedReader(new FileReader(demo.listing_file_path));
  			String file_name =  br.readLine();
+ 			int file_count=0;
  			while(br!=null)
- 			{
+ 			{ 
+ 				file_count++;
  				System.out.println("Parsing File="+file_name);
  				int len = (file_name.split("\\\\")).length;
  				//demo.complete_package_path = file_name.split("\\\\")[len-2];
  				//demo.temp_file_path= file_name.replace("\\", "\\\\");
  			  
- 				demo.file_log_lines(file_name);
+ 				demo.file_log_lines(file_name, file_count);
  				file_name =  br.readLine();
  				
  			}
@@ -133,7 +135,7 @@ public class cloudstack_compute_pac_file_class_meth_log_density
  			
  	}
  	
- public void file_log_lines(String file_name)
+ public void file_log_lines(String file_name, int file_count)
  	{
 	
 	 util3_met u3m= new util3_met(); 
@@ -151,7 +153,7 @@ public class cloudstack_compute_pac_file_class_meth_log_density
  			file_final_sloc= u3m.find_final_file_SLOC(file_content_without_comment);
  			file_name=  file_name.replace("\\", "\\\\");
  	     	//System.out.println(" file name="+ file_name+ " loc = "+ file_final_sloc+ " logged="+l.logged+ "count="+ l.log_count+ "new loc"+ file_final_sloc);		
- 			insert_to_db(file_name, file_final_sloc, l.logged, l.log_count, l.log_levels_combined);
+ 			insert_to_db(file_count, file_name, file_final_sloc, l.logged, l.log_count, l.log_levels_combined);
  		}catch(Exception e)
  		{
  			e.printStackTrace();
@@ -160,9 +162,9 @@ public class cloudstack_compute_pac_file_class_meth_log_density
  	}
 	 
 
-private void insert_to_db(String file_name, int file_final_sloc, int logged, int log_count,  String log_levels)
+private void insert_to_db(int file_count, String file_name, int file_final_sloc, int logged, int log_count,  String log_levels)
 {
-	String insert_str = "insert into "+ insert_table + " values( '"+ file_name+"',"+ file_final_sloc +","+ logged+","+ log_count+",'"+log_levels+"'" +")";
+	String insert_str = "insert into "+ insert_table + " values("+file_count+", '"+ file_name+"',"+ file_final_sloc +","+ logged+","+ log_count+",'"+log_levels+"'" +")";
 	
 	Statement stmt =null;
 	try 
