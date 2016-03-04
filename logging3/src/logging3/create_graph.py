@@ -128,11 +128,11 @@ def plot_var(y_lim_upper, title, y_axis_label, quartile_val):
         # overlay median value
         print "y=", y
         plt.rcParams.update({'font.size': 15})
-        text(x+0.17, y-1.2, 'Q1= %.1f' % q1,
+        text(x+0.17, y-20, 'Q1= %.1f' % q1,
              horizontalalignment='center') # draw above, centered
         text(x+0.15, y, 'Med= %.1f' % med,
              horizontalalignment='center') # draw above, centered
-        text(x+0.17, y+1.2, 'Q3= %.1f' % q3,
+        text(x+0.17, y+20, 'Q3= %.1f' % q3,
              horizontalalignment='center') # draw above, centered
     
     #print box.keys()    
@@ -812,4 +812,4 @@ quartile_val  = [log_quartile, non_log_quartile]
 #==Call inbuilt function===#
 plot_var(file_sloc_y_upper, title, file_sloc_y_axis_label, quartile_val)
 #plt.show()
-#plt.savefig(file_path+ "file_sloc-try-loc\\"+project+"file_sloc.png")
+plt.savefig(file_path+ "file_sloc\\"+project+"file_sloc.png")
