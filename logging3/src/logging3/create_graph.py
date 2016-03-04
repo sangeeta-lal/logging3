@@ -24,6 +24,9 @@ g2_y_axis_label = "Operator   Counts   of   Try-Block "
 g3_y_upper = 30
 g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 
+file_sloc_y_upper = 400
+file_sloc_y_axis_label= "File SLOC"
+
 #"""
 """
 project =  "cloudstack_"
@@ -37,6 +40,9 @@ g2_y_axis_label = " "
 
 g3_y_upper = 50
 g3_y_axis_label = " "
+
+file_sloc_y_upper = 400
+file_sloc_y_axis_label= " "
 #"""
 
 """
@@ -51,6 +57,9 @@ g2_y_axis_label = " "
 
 g3_y_upper = 30
 g3_y_axis_label = " "
+
+file_sloc_y_upper = 400
+file_sloc_y_axis_label= " "
 #"""
 
 
@@ -83,7 +92,7 @@ select_cursor = db1.cursor()
 
 #"""
 
-"""
+
 def plot_var(y_lim_upper, title, y_axis_label, quartile_val):  
 
     plt.figure()
@@ -151,7 +160,7 @@ def plot_var(y_lim_upper, title, y_axis_label, quartile_val):
 #=================Graph 1: Catch======================#
 #@Compares LOC of logged and Non-Logged blocks
 #==============================================#
-
+"""
 g1_log = "select try_loc from "+ catch_training_table+ " where is_catch_logged=1"
 select_cursor.execute(g1_log)
 g1_log_db = select_cursor.fetchall()
@@ -743,21 +752,64 @@ plt.close()
 #========================================================================#
 #  G10: This graph makes box-plots for the sloc of the files.            #
 #========================================================================#
-avg_sloc_total =  0.0
+avg_sloc_non_logged =  0.0
 avg_sloc_logged = 0.0
 
-str_sloc  = "select avg(file_sloc)  from  "+ file_sloc_table 
-select_cursor.execute(str_sloc)
-data =  select_cursor.fetchall()
-for d in data:
-    avg_sloc_total = d[0]
-
-
-
-str_sloc  = "select avg(file_sloc)  from  "+ file_sloc_table  +"  where is_logged = 1"
+str_sloc  = "select avg(file_sloc)  from  "+ file_sloc_table + " where is_logged = 1"
 select_cursor.execute(str_sloc)
 data =  select_cursor.fetchall()
 for d in data:
     avg_sloc_logged = d[0]
 
-print "avg total sloc= ", avg_sloc_total, "  avg sloc logged=", avg_sloc_logged
+
+
+str_sloc  = "select avg(file_sloc)  from  "+ file_sloc_table  +"  where is_logged = 0"
+select_cursor.execute(str_sloc)
+data =  select_cursor.fetchall()
+for d in data:
+    avg_sloc_non_logged = d[0]
+
+print "avg total sloc= ", avg_sloc_logged, "  avg sloc logged=", avg_sloc_non_logged
+
+
+#===Make the Box-Plot===================================================#
+file_sloc_log = "select file_sloc from "+ file_sloc_table+ " where is_logged=1"
+select_cursor.execute(file_sloc_log)
+file_sloc_log_db = select_cursor.fetchall()
+file_sloc_data_log  = list()
+#file_sloc_data_log.append(2)
+for d in file_sloc_log_db:
+    file_sloc_data_log.append(d[0])
+
+file_sloc_non_log = "select file_sloc from "+ file_sloc_table+ " where is_logged=0"
+select_cursor.execute(file_sloc_non_log)
+file_sloc_non_log_db = select_cursor.fetchall()
+file_sloc_data_non_log  = list()
+for d in file_sloc_non_log_db:
+    file_sloc_data_non_log.append(d[0])
+
+print "length sloc log = ", size(file_sloc_data_log    ),"length  sloc non logged= ", size(file_sloc_data_non_log    )
+data= [file_sloc_data_log, file_sloc_data_non_log]
+
+log_quartile = list()
+non_log_quartile = list()
+
+q1_log= np.percentile(file_sloc_data_log, 25)
+med_log= np.median(file_sloc_data_log)
+q3_log = np.percentile(file_sloc_data_log, 75)
+log_quartile.append(q1_log)
+log_quartile.append(med_log)
+log_quartile.append(q3_log)
+
+q1_non_log= np.percentile(file_sloc_data_non_log, 25)
+med_non_log = np.median(file_sloc_data_non_log)
+q3_non_log = np.percentile(file_sloc_data_non_log, 75)
+non_log_quartile.append(q1_non_log)
+non_log_quartile.append(med_non_log)
+non_log_quartile.append(q3_non_log)
+
+quartile_val  = [log_quartile, non_log_quartile]
+#==Call inbuilt function===#
+plot_var(file_sloc_y_upper, title, file_sloc_y_axis_label, quartile_val)
+#plt.show()
+#plt.savefig(file_path+ "file_sloc-try-loc\\"+project+"file_sloc.png")
