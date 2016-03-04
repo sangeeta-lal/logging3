@@ -27,6 +27,8 @@ g3_y_axis_label = "Method   Call   Counts   of   Try-Block "
 file_sloc_y_upper = 400
 file_sloc_y_axis_label= "File SLOC"
 
+file_sloc_title = "Log Count"
+
 #"""
 """
 project =  "cloudstack_"
@@ -43,6 +45,8 @@ g3_y_axis_label = " "
 
 file_sloc_y_upper = 400
 file_sloc_y_axis_label= " "
+
+file_sloc_title = " "
 #"""
 
 """
@@ -60,8 +64,9 @@ g3_y_axis_label = " "
 
 file_sloc_y_upper = 400
 file_sloc_y_axis_label= " "
-#"""
 
+file_sloc_title = " "
+#"""
 
 
 #"""
@@ -86,12 +91,10 @@ file_sloc_table = project+"file_logging_density"
 file_path="E:\\Sangeeta\\Research\\Logging3\\result\\"
 #"""
 
-
 db1= MySQLdb.connect(host="localhost",user=user, passwd=password, db=database, port=port)
 select_cursor = db1.cursor()
 
 #"""
-
 
 def plot_var(y_lim_upper, title, y_axis_label, quartile_val):  
 
@@ -813,3 +816,33 @@ quartile_val  = [log_quartile, non_log_quartile]
 plot_var(file_sloc_y_upper, title, file_sloc_y_axis_label, quartile_val)
 #plt.show()
 plt.savefig(file_path+ "file_sloc\\"+project+"file_sloc.png")
+
+plt.close()
+
+#==========================================================#
+#========Make Scatter Plot of File SLOC Vs. Log Count======#
+sloc_vs_log_count = "select file_sloc, log_count from "+ file_sloc_table+ " where is_logged=1"
+select_cursor.execute(sloc_vs_log_count)
+sloc_log_count_db = select_cursor.fetchall()
+
+file_sloc_log  = list()
+file_log_count = list()
+
+#file_sloc_data_log.append(2)
+for d in sloc_log_count_db:
+    file_sloc_log.append(d[0])
+    file_log_count.append(d[1])
+    
+plt.figure()
+plt.scatter(file_sloc_log, file_log_count)
+ax = plt.subplot()
+max_sloc =max( file_sloc_log)
+max_log_count = max(file_log_count)
+ax.set_xlim([0, max_sloc + 10])
+ax.set_ylim([0, max_log_count + 10])
+plt.suptitle(title)
+plt.xlabel("File SLOC")
+plt.ylabel(file_sloc_title)
+plt.rcParams.update({'font.size': 22})
+#plt.show()    
+plt.savefig(file_path+ "file_sloc_scatter\\"+project+"file_sloc_scatter.png", bbox_inches='tight')
