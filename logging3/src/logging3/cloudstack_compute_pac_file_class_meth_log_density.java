@@ -37,7 +37,7 @@ import org.eclipse.jdt.core.dom.WhileStatement;
 /* @ Author: Sangeeta
  * @Uses:This file will be used to compute the logging density of file/packages/class/methods to make graphs
 */
-public class TOMCAT_compute_pac_file_class_meth_log_density 
+public class cloudstack_compute_pac_file_class_meth_log_density 
 
 {
 	String rawContent = "";
@@ -54,11 +54,11 @@ public class TOMCAT_compute_pac_file_class_meth_log_density
 	 String password = "1234";
 	   
 	//@Note: create this file using create_file_listing.py
-	 String listing_file_path = "F:\\Research\\Logging3\\result\\tomcat-8.0.9_java_files.txt";
-	//String listing_file_path = "F:\\Research\\Logging3\\result\\tomcat-test.txt";
+	 String listing_file_path = "F:\\Research\\Logging3\\result\\cloudstack-4.3.0_java_files.txt";
+	//String listing_file_path = "F:\\Research\\Logging3\\result\\cloudstack-test.txt";
 
-	 String logged_file_path = "F:\\Research\\Logging3\\result\\tomcat_log_all.txt";
-	 String insert_table = "tomcat_file_logging_density";
+	 String logged_file_path = "F:\\Research\\Logging3\\result\\cloudstack_log_all.txt";
+	 String insert_table = "cloudstack_file_logging_density";
 	//*/
     
 	/*
@@ -69,9 +69,9 @@ public class TOMCAT_compute_pac_file_class_meth_log_density
 	 String password = "sangeetal";
 	
 	//@Note: create this file using create_file_listing.py
-	 String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\tomcat-8.0.9_java_files.txt";  
-	 String logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\tomcat_log_all.txt";
-	  String insert_table = "tomcat_file_logging_density";
+	 String listing_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\cloudstack-4.3.0_java_files.txt";  
+	 String logged_file_path = "E:\\Sangeeta\\Research\\Logging3\\result\\cloudstack_log_all.txt";
+	  String insert_table = "cloudstack_file_logging_density";
    //*/
 	 
 	 Connection conn=null;	
@@ -79,7 +79,7 @@ public class TOMCAT_compute_pac_file_class_meth_log_density
      
      public static void main(String[] args) 
  	{
-        TOMCAT_compute_pac_file_class_meth_log_density  demo = new TOMCAT_compute_pac_file_class_meth_log_density();
+        cloudstack_compute_pac_file_class_meth_log_density  demo = new cloudstack_compute_pac_file_class_meth_log_density();
  		demo.conn = demo.initdb(demo.db_name);
 
  		if(demo.conn==null)

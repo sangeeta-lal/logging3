@@ -194,7 +194,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"info";
+		      l.log_levels_combined=l.log_levels_combined+" "+"info";
 		      
 			}	
 			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logI\\()");
@@ -205,7 +205,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"info";
+		      l.log_levels_combined=l.log_levels_combined+" "+"info";
 		      
 			}
 			
@@ -218,7 +218,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"trace";
+		      l.log_levels_combined=l.log_levels_combined+" "+"trace";
 		      
 			}	
 			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logT\\()");
@@ -229,7 +229,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"trace";
+		      l.log_levels_combined=l.log_levels_combined+" "+"trace";
 		      
 			}
 			
@@ -242,7 +242,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"debug";
+		      l.log_levels_combined=l.log_levels_combined+" "+"debug";
 		      
 			}	
 			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logD\\()");
@@ -253,7 +253,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"debug";
+		      l.log_levels_combined=l.log_levels_combined+" "+"debug";
 		      
 			}
 
@@ -265,7 +265,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"warn";
+		      l.log_levels_combined=l.log_levels_combined+" "+"warn";
 		      
 			}	
 			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logW\\()");
@@ -276,7 +276,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"warn";
+		      l.log_levels_combined=l.log_levels_combined+" "+"warn";
 		      
 			}
 
@@ -289,7 +289,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"error";
+		      l.log_levels_combined=l.log_levels_combined+" "+"error";
 		      
 			}	
 			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logE\\()");
@@ -300,7 +300,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"error";
+		      l.log_levels_combined=l.log_levels_combined+" "+"error";
 		      
 			}
 			
@@ -313,7 +313,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"fatal";
+		      l.log_levels_combined=l.log_levels_combined+" "+"fatal";
 		      
 			}	
 			pat = Pattern.compile("([a-zA-Z0-9_\\(\\)]*logF\\()");
@@ -324,7 +324,7 @@ public class util3_met
 			  System.out.print("Start index: " + matcher.start());
 		      System.out.print(" End index: " + matcher.end() + " ");
 		      System.out.println("pattern matched = "+matcher.group(1));*/
-		      l.log_levels_combined=l.log_levels_combined+"  "+"fatal";
+		      l.log_levels_combined=l.log_levels_combined+" "+"fatal";
 		      
 			}
 			//Pattern:  project.log(""wrong object reference "" + refId + "" - ""+ pref.getClass());
@@ -483,7 +483,7 @@ public class util3_met
 			
 			if(l.log_levels_combined!="")
 			{
-			l.log_count= l.log_levels_combined.trim().split(" ").length;
+			l.log_count= l.log_levels_combined.trim().split(" +").length;
 			l.logged = 1;
 			}
 			System.out.println("Final Log levels are:"+l.log_levels_combined);
@@ -498,9 +498,9 @@ public class util3_met
 		int end_index= string_content.indexOf(")", start_index);
 		String substring = string_content.substring(start_index, end_index);
 		
-		System.out.println("Substring oitside="+ substring);
+		//System.out.println("Substring oitside="+ substring);
 		int index =  substring.indexOf("Level");
-		System.out.println("level index=" +index);
+		//System.out.println("level index=" +index);
 		if(index==-1)
 		{
 			level = "Unknown5";
@@ -508,7 +508,7 @@ public class util3_met
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			try 
 			 {
-				System.out.println("string content="+ string_content+" substring="+substring);
+				//System.out.println("string content="+ string_content+" substring="+substring);
 			    //br.readLine();
 			 }catch(Exception e)
 			{}
@@ -534,7 +534,7 @@ public class util3_met
 				level = "warn";
 			}
 			
-			System.out.println("level = "+ level);
+			//System.out.println("level = "+ level);
 			
 			 }catch(Exception e)
 			{ 
@@ -1125,7 +1125,9 @@ public int find_final_file_SLOC(String file_content_as_string)
 		    
 	      if((is_blank_line(line_val)!=true)&&(is_import_or_package_stmt(line_val)!=true)&&(is_brace_only(line_val)!=true))
 	      {
+	    	// System.out.println("Line Val ="+ line_val);
 	    	  final_file_sloc++;
+	    	 // System.out.println("File SLOC ="+ final_file_sloc);
 	    	  
 	      }   //if blank
 			 		

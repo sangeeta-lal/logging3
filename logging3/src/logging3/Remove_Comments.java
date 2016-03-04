@@ -12,7 +12,9 @@ import java.util.regex.Pattern;
 //Link of this code:  http://stackoverflow.com/questions/1657066/java-regular-expression-finding-comments-in-code
 public class Remove_Comments {
 
-static List<Match> commentMatches = new ArrayList<Match>();
+
+
+ List<Match> commentMatches = new ArrayList<Match>();
 
 //This function removes the comments from given string
 public String remove_comments(String text)
@@ -30,6 +32,8 @@ public String remove_comments(String text)
 	        commentMatches.add(match);
 	 }
      
+   
+     
      List<Match> commentsToRemove = new ArrayList<Match>();
 
      Matcher stringsMatcher = stringsPattern.matcher(text);
@@ -39,20 +43,24 @@ public String remove_comments(String text)
                  commentsToRemove.add(comment);
          }
      }
+     
+     
      for (Match comment : commentsToRemove)
-         commentMatches.remove(comment);
+         {commentMatches.remove(comment);
+         
+         }
 
      for (Match comment : commentMatches)
-         text = text.replace(comment.text, " ");
-
-   //  System.out.println(text);
-     
+         {
+    	   text = text.replace(comment.text, " ");
+          
+         }
     
      return text;
 
 }
 
-static class Match 
+ class Match 
 {
     int start;
     String text;
