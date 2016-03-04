@@ -62,6 +62,7 @@ password="1234"
 database="logging_level3"
 catch_training_table = project+"catch_training3"
 ratio_table= project+"catch_logging_ratio"
+file_sloc_table = project+"file_logging_density"
 file_path="F:\\Research\\Logging3\\result\\"
 """
 
@@ -72,6 +73,7 @@ database="logging_level3"
 catch_training_table = project+"catch_training3"
 ratio_table= project+"catch_logging_ratio"
 #To save files on specified locations
+file_sloc_table = project+"file_logging_density"
 file_path="E:\\Sangeeta\\Research\\Logging3\\result\\"
 #"""
 
@@ -283,7 +285,7 @@ plot_var(g3_y_upper, title, g3_y_axis_label, quartile_val)
 #plt.show()
 #plt.savefig(file_path+ "g3-try-method-call\\"+project+"g3.png")
 
-"""
+
 
 
 #===========================================================
@@ -562,12 +564,12 @@ print " Unique Try block = ", unique_try_blocks,  "  mix try blocks=", mix_try_b
   
   
 #=================================================================================================
-#  G7: ERCC nad ERLC graph are present in this file. ==> create_logging_ratio_table_graph.py
+#  G8: ERCC nad ERLC graph are present in this file. ==> create_logging_ratio_table_graph.py
 #=================================================================================================  
 
 
 #=================================================================================================#
-#  G8: Logging ratio distribution
+#  G9: Logging ratio distribution
 #==================================================================================================#
 total_exc_types=0.0
 between_0_10_p=0.0
@@ -725,7 +727,7 @@ plt.xticks(ind, range_list, rotation=290, fontsize=20,  ha='left')
 rects = ax.patches
 
 # Now make some labels
-#"""
+#
 for rect, label in zip(rects, logging_ratio_count):
     height = rect.get_height()
     ax.text(rect.get_x() + rect.get_width()/2, height + 2, label, ha='center', va='bottom') 
@@ -734,4 +736,28 @@ plt.savefig(file_path+"logging_ratio\\"+project+"logging_ratio.png", bbox_inches
 plt.show()
 plt.close()
 
-#"""
+"""
+
+
+
+#========================================================================#
+#  G10: This graph makes box-plots for the sloc of the files.            #
+#========================================================================#
+avg_sloc_total =  0.0
+avg_sloc_logged = 0.0
+
+str_sloc  = "select avg(file_sloc)  from  "+ file_sloc_table 
+select_cursor.execute(str_sloc)
+data =  select_cursor.fetchall()
+for d in data:
+    avg_sloc_total = d[0]
+
+
+
+str_sloc  = "select avg(file_sloc)  from  "+ file_sloc_table  +"  where is_logged = 1"
+select_cursor.execute(str_sloc)
+data =  select_cursor.fetchall()
+for d in data:
+    avg_sloc_logged = d[0]
+
+print "avg total sloc= ", avg_sloc_total, "  avg sloc logged=", avg_sloc_logged

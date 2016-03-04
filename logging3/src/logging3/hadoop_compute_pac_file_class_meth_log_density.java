@@ -143,9 +143,7 @@ public class hadoop_compute_pac_file_class_meth_log_density
 	 Remove_Comments  rc =  new Remove_Comments();
 	 
  		try
- 		{
- 			
- 			
+ 		{		
  			int file_final_sloc = 0;
   			String file_content_as_string = readFileToString(file_name);	
  			String file_content_without_comment =  rc.remove_comments(file_content_as_string);	
