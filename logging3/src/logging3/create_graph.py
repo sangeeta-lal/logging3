@@ -878,6 +878,7 @@ plt.plot(file_sloc_all, file_log_count, 'yo', file_sloc_all, p(file_sloc_all),'r
 
 ax = plt.subplot()
 max_sloc =max( file_sloc_log)
+print " max-sloc=", max_sloc
 max_log_count = max(file_log_count)
 ax.set_xlim([0, max_sloc + 10])
 ax.set_ylim([0, max_log_count + 10])
