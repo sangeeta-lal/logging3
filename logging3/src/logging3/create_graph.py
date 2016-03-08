@@ -834,7 +834,12 @@ for d in sloc_log_count_db:
     file_log_count.append(d[1])
     
 plt.figure()
-plt.scatter(file_sloc_log, file_log_count)
+
+z = np.polyfit(file_sloc_log,file_log_count,1)
+p = np.poly1d(z)
+
+#plt.scatter(file_sloc_log, file_log_count)
+plt.plot(file_sloc_log, file_log_count, 'o', file_sloc_log, p(file_sloc_log),'r--')
 ax = plt.subplot()
 max_sloc =max( file_sloc_log)
 max_log_count = max(file_log_count)
@@ -864,7 +869,12 @@ for d in sloc_log_count_db:
     file_log_count.append(d[1])
     
 plt.figure()
-plt.scatter(file_sloc_all, file_log_count, c='yellow')
+
+z = np.polyfit(file_sloc_all,file_log_count,1)
+p = np.poly1d(z)
+
+#plt.scatter(file_sloc_all, file_log_count, c='yellow', file_sloc_all, p(file_sloc_all),'r--')
+plt.plot(file_sloc_all, file_log_count, 'yo', file_sloc_all, p(file_sloc_all),'r--')
 
 ax = plt.subplot()
 max_sloc =max( file_sloc_log)
