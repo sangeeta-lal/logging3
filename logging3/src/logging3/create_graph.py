@@ -764,8 +764,6 @@ data =  select_cursor.fetchall()
 for d in data:
     avg_sloc_logged = d[0]
 
-
-
 str_sloc  = "select avg(file_sloc)  from  "+ file_sloc_table  +"  where is_logged = 0"
 select_cursor.execute(str_sloc)
 data =  select_cursor.fetchall()
@@ -791,7 +789,7 @@ file_sloc_data_non_log  = list()
 for d in file_sloc_non_log_db:
     file_sloc_data_non_log.append(d[0])
 
-print "length sloc log = ", size(file_sloc_data_log    ),"length  sloc non logged= ", size(file_sloc_data_non_log    )
+#print "length sloc log = ", size(file_sloc_data_log    ),"length  sloc non logged= ", size(file_sloc_data_non_log    )
 data= [file_sloc_data_log, file_sloc_data_non_log]
 
 log_quartile = list()
@@ -819,8 +817,8 @@ plt.savefig(file_path+ "file_sloc\\"+project+"file_sloc.png")
 
 plt.close()
 
-#==========================================================#
-#========Make Scatter Plot of File SLOC Vs. Log Count for logged files======#
+#===========================================================================#
+#========Make Scatter Plot of logged File SLOC Vs. Log Count for logged files======#
 sloc_vs_log_count = "select file_sloc, log_count from "+ file_sloc_table+ " where is_logged=1"
 select_cursor.execute(sloc_vs_log_count)
 sloc_log_count_db = select_cursor.fetchall()
@@ -853,9 +851,12 @@ plt.rcParams.update({'font.size': 22})
 plt.savefig(file_path+ "file_sloc_scatter\\"+project+"file_sloc_scatter_logged.png", bbox_inches='tight')
 plt.close()
 
+#=====@Preason-correlation======#
+corr_logged= np.corrcoef(file_sloc_log, file_log_count)[1][0]
+print  "Correlation value Logged File SLOC and Log Count=", corr_logged
 
 #========================================================================#
-#========Make Scatter Plot of File SLOC Vs. Log Count for all files======#
+#========Make Scatter Plot of all File SLOC Vs. Log Count for all files======#
 sloc_vs_log_count = "select file_sloc, log_count from "+ file_sloc_table
 select_cursor.execute(sloc_vs_log_count)
 sloc_log_count_db = select_cursor.fetchall()
@@ -889,3 +890,6 @@ plt.rcParams.update({'font.size': 22})
 #plt.show()    
 plt.savefig(file_path+ "file_sloc_scatter\\"+project+"file_sloc_scatter_all.png", bbox_inches='tight')
 plt.close()
+#=====@Preason-correlation======#
+corr_logged= np.corrcoef(file_sloc_all, file_log_count)[1][0]
+print  "Correlation value Logged File SLOC and Log Count=", corr_logged
