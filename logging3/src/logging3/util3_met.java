@@ -782,6 +782,12 @@ public class util3_met
 		
 		//Do augumentation for parsng method call
 		modified_input  =  aug_for_method_call_extraction(input_con);
+		
+		//=====New Lines===================================//
+		Remove_Comments rc =  new Remove_Comments();
+		modified_input = rc.remove_comments(modified_input);
+		//================================================//
+		
 		MethodCallPrinterClass obj =  new MethodCallPrinterClass();
 		method_call_names = obj.visitor(modified_input);
 		
@@ -804,6 +810,9 @@ public class util3_met
 	{
 		String operator = "";
 		int operator_count = 0;
+		
+		Remove_Comments rc =  new Remove_Comments();// new line
+		try_con =  rc.remove_comments(try_con); //new line
 				
 		//*****************************************************************************************************//
 		//@This pattern 1: It can find operators in a give string  
