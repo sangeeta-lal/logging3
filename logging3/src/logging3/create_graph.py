@@ -131,11 +131,11 @@ def plot_var(y_lim_upper, title, y_axis_label, quartile_val):
         # overlay median value
         print "y=", y
         plt.rcParams.update({'font.size': 15})
-        text(x+0.17, y-20, 'Q1= %.1f' % q1,
+        text(x+0.17, y-2, 'Q1= %.1f' % q1,
              horizontalalignment='center') # draw above, centered
         text(x+0.15, y, 'Med= %.1f' % med,
              horizontalalignment='center') # draw above, centered
-        text(x+0.17, y+20, 'Q3= %.1f' % q3,
+        text(x+0.17, y+2, 'Q3= %.1f' % q3,
              horizontalalignment='center') # draw above, centered
     
     #print box.keys()    
@@ -748,7 +748,6 @@ plt.savefig(file_path+"logging_ratio\\"+project+"logging_ratio.png", bbox_inches
 plt.show()
 plt.close()
 
-"""
 
 
 
@@ -893,3 +892,5 @@ plt.close()
 #=====@Preason-correlation======#
 corr_logged= np.corrcoef(file_sloc_all, file_log_count)[1][0]
 print  "Correlation value all File SLOC and Log Count=", corr_logged
+
+"""
