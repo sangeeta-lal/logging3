@@ -892,4 +892,4 @@ plt.savefig(file_path+ "file_sloc_scatter\\"+project+"file_sloc_scatter_all.png"
 plt.close()
 #=====@Preason-correlation======#
 corr_logged= np.corrcoef(file_sloc_all, file_log_count)[1][0]
-print  "Correlation value Logged File SLOC and Log Count=", corr_logged
+print  "Correlation value all File SLOC and Log Count=", corr_logged

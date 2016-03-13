@@ -57,43 +57,40 @@ public class util3_met
 		
 	}
 	
-/*	public int get_try_loc_count(String con)
+	
+	// This function computes the SLOC of try bloc
+	public int get_new_try_sloc(String con)
 	{
-		//@Comment: This is a specialized method for counting for try block as it counts loc =  loc-2 , because of bracket problem
-		int loc = 0;
-		
-		String loc_arr[] = con.split("\n");
-		for(int i = 0; i< loc_arr.length; i++)
-		{
-			if(loc_arr[i]!="")
+		int sloc = 0;
+		 Remove_Comments rc =  new Remove_Comments();
+		   	
+			String content_without_comment  =  rc.remove_comments(con);	
+			String content_lines [] =  content_without_comment.split("\n");
+			int length = content_lines.length;
+			
+			;
+			for(int i=0; i<length;i++)
 			{
-				loc++;
-			}
-		}
+				String line_val ="";
+		        line_val= content_lines[i];
+			    line_val = line_val.trim();
+				    
+			      if((is_blank_line(line_val)!=true)&&(is_import_or_package_stmt(line_val)!=true)&&(is_brace_only(line_val)!=true))
+			      {
+			    	// System.out.println("Line Val ="+ line_val);
+			    	  sloc++;
+			    	 // System.out.println("File SLOC ="+ final_file_sloc);
+			    	  
+			      }   //if blank
+					 		
+						 
+			}// for loop
+			
+			return sloc;
 		
-		if(loc!=0)
-		  {loc = loc-2;}
-		
-		return loc;
 		
 	}
-	*/
-	
-/*	//This function is used for counting LOC 
-	public int get_loc(String con)
-	{
-		int loc=0;
-		String loc_arr[] = con.split("\n");
-		for(int i = 0; i< loc_arr.length; i++)
-		{
-			if(loc_arr[i]!="")
-			{
-				loc++;
-			}
-		}
-			
-		return loc;
-	}*/
+
 	
 	
 	//This function is used for counting LOC 
@@ -1007,103 +1004,6 @@ public boolean is_import_or_package_stmt(String line_val)
  return false;
 }
 
-
-// This function LOC of a given file
-public int find_file_LOC(String file_name)
-{
-
-	int file_LOC = 0;
-	try
-	  {
-	    //file_name= "F:\\Research\\Logging3\\dataset\\tomcat-8.0.9\\webapps\\examples\\WEB-INF\\classes\\websocket\\snake\\SnakeTimer.java";
-	      BufferedReader reader = new BufferedReader(new FileReader(file_name));
-	      String line_val ="";
-		  while ((line_val=reader.readLine()) != null) 
-		   {
-			  if(is_blank_line(line_val)!=true)
-			     {
-				 		
-					  {file_LOC++;}
-			     }
-		    }
-		  reader.close(); 	
-		
-      }catch(Exception e)
-	    {
-		 
-	      e.printStackTrace();
-         }
-	
-	return  file_LOC;
-}
-
-
-//This function SLOC of a given file and hence removes comments from the code
-public int find_file_SLOC(String file_content_as_string)
-{
-
-	int file_SLOC = 0;
-	int  have_comment = 0;
-	try
-	  {
-	    //file_name= "F:\\Research\\Logging3\\dataset\\tomcat-8.0.9\\webapps\\examples\\WEB-INF\\classes\\websocket\\snake\\SnakeTimer.java";
-	      //BufferedReader reader = new BufferedReader(new FileReader(file_name));
-	      
-		String file_lines[] =  file_content_as_string.split("\n");
-		int length = file_lines.length;
-		
-		for(int i=0;i<length;i++) 
-		{
-	         String line_val ="";
-	         line_val= file_lines[i];
-		     line_val = line_val.trim();
-			    
-		      if(is_blank_line(line_val)!=true)
-			         {
-				 		
-					  if(line_val.startsWith("//"))
-					  {
-						  
-						// have_comment =1;
-						 // break;
-					   }
-						 
-					  else if(line_val.startsWith("/*"))
-					  {
-						  boolean multiline_comment = true;
-						  while(multiline_comment)
-						  {
-							  if(line_val.endsWith("*/"))
-							  {
-								  multiline_comment  = false;
-							  }
-							  
-							  else
-							  {
-								
-							    i++;
-								line_val  =  file_lines[i];
-								line_val  = line_val.trim();
-							  }
-						   }//while
-						 }
-					  else
-					  {
-						  file_SLOC++;
-					  }
-			     }
-			     
-		    }//for
-		   	
-		
-       }catch(Exception e)
-	    {
-		 
-	      e.printStackTrace();
-        }
-	
-	return  file_SLOC;
-}
 
 
 // This is the final method for computing sloc of a given file
