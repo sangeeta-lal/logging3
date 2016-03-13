@@ -385,7 +385,9 @@ public void methodVisitor(String content)
         	try_con = try_con.replace("\\", " "); */
         	System.out.println("Content of Try Block=" + try_con.toString() );
         	
-        	try_loc = utm.get_try_loc_count(try_con);
+        	//	try_loc = utm.get_try_loc_count(try_con);// old method @not comment
+        	try_loc= utm.get_new_try_sloc(try_con);
+        	
         	tli = utm.find_and_set_logging_level(try_con, tli);
         	is_try_logged  = tli.logged;
         	try_log_count =  tli.log_count;
